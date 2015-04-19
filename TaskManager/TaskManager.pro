@@ -14,10 +14,13 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         taskmanager.cpp \
-    authentication.cpp
+    authentication.cpp \
+    customersearch.cpp
 
 HEADERS  += taskmanager.h \
-    authentication.h
+    authentication.h \
+    customersearch.h
 
 FORMS    += taskmanager.ui \
-    authentication.ui
+    authentication.ui \
+    customersearch.ui

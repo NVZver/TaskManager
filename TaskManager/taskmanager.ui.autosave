@@ -61,7 +61,7 @@
     <rect>
      <x>10</x>
      <y>450</y>
-     <width>352</width>
+     <width>473</width>
      <height>29</height>
     </rect>
    </property>
@@ -89,6 +89,13 @@
     </item>
     <item>
      <widget class="QDateEdit" name="dteSearch"/>
+    </item>
+    <item>
+     <widget class="QPushButton" name="pbtnCreateTask">
+      <property name="text">
+       <string>Создать задачу</string>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>
