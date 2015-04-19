@@ -44,7 +44,53 @@
     <attribute name="title">
      <string>Пропущенные</string>
     </attribute>
+    <widget class="QTableView" name="tvMissedCalls">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>800</width>
+       <height>420</height>
+      </rect>
+     </property>
+    </widget>
    </widget>
+  </widget>
+  <widget class="QWidget" name="">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>450</y>
+     <width>352</width>
+     <height>29</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <widget class="QPushButton" name="pbtnDayBack">
+      <property name="text">
+       <string>&lt;-</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="pbtnToday">
+      <property name="text">
+       <string>Сегодня</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="pbtnDayNext">
+      <property name="text">
+       <string>-&gt;</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QDateEdit" name="dteSearch"/>
+    </item>
+   </layout>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>

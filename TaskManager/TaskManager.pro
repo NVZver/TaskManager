@@ -13,8 +13,11 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        taskmanager.cpp
+        taskmanager.cpp \
+    authentication.cpp
 
-HEADERS  += taskmanager.h
+HEADERS  += taskmanager.h \
+    authentication.h
 
-FORMS    += taskmanager.ui
+FORMS    += taskmanager.ui \
+    authentication.ui
