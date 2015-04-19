@@ -14,6 +14,17 @@ class Authentication : public QWidget
 public:
     explicit Authentication(QWidget *parent = 0);
     ~Authentication();
+private:
+    QList<QString> _logins;
+    QList<QString> _passwords;
+    bool checkingLogPass(QString log, QString pass);
+
+private slots:
+    void on_pbtnOK_clicked();
+
+    void on_pbtnCancel_clicked();
+
+    void on_lntPassword_returnPressed();
 
 private:
     Ui::Authentication *ui;

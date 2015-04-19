@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -15,12 +15,17 @@ TEMPLATE = app
 SOURCES += main.cpp\
         taskmanager.cpp \
     authentication.cpp \
-    customersearch.cpp
+    customersearch.cpp \
+    task.cpp \
+    connecttodatabase.cpp
 
 HEADERS  += taskmanager.h \
     authentication.h \
-    customersearch.h
+    customersearch.h \
+    task.h \
+    connecttodatabase.h
 
 FORMS    += taskmanager.ui \
     authentication.ui \
-    customersearch.ui
+    customersearch.ui \
+    task.ui

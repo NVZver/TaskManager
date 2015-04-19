@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Task</class>
+ <widget class="QWidget" name="Task">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>676</width>
+    <height>386</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QPushButton" name="pbtnCreate">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>320</y>
+     <width>201</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>OK</string>
+   </property>
+  </widget>
+  <widget class="QTextEdit" name="txtComment">
+   <property name="geometry">
+    <rect>
+     <x>270</x>
+     <y>270</y>
+     <width>401</width>
+     <height>111</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QGroupBox" name="gbxAddress">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>10</y>
+     <width>251</width>
+     <height>261</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>Реквизиты клиента</string>
+   </property>
+   <widget class="QWidget" name="layoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>20</y>
+      <width>230</width>
+      <height>233</height>
+     </rect>
+    </property>
+    <layout class="QFormLayout" name="formLayout">
+     <item row="1" column="0">
+      <widget class="QLabel" name="lblLocality">
+       <property name="text">
+        <string>нас. пункт</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QLineEdit" name="lntLocality"/>
+     </item>
+     <item row="2" column="0">
+      <widget class="QLabel" name="lblStreet">
+       <property name="text">
+        <string>улица</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="QLineEdit" name="lntStreet"/>
+     </item>
+     <item row="3" column="0">
+      <widget class="QLabel" name="lblHouse">
+       <property name="text">
+        <string>дом</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="1">
+      <widget class="QLineEdit" name="lntHosue"/>
+     </item>
+     <item row="4" column="1">
+      <widget class="QLineEdit" name="lntApartment"/>
+     </item>
+     <item row="4" column="0">
+      <widget class="QLabel" name="lblApartment">
+       <property name="text">
+        <string>квартира</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="0">
+      <widget class="QLabel" name="lblContractNumber">
+       <property name="frameShape">
+        <enum>QFrame::NoFrame</enum>
+       </property>
+       <property name="text">
+        <string>№ договара</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QLineEdit" name="lntContractNumber"/>
+     </item>
+     <item row="5" column="0">
+      <widget class="QLabel" name="lblPerformer">
+       <property name="text">
+        <string>Исполнитель</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="1">
+      <widget class="QComboBox" name="cbxPerformers"/>
+     </item>
+     <item row="6" column="0">
+      <widget class="QLabel" name="lblDeadline">
+       <property name="text">
+        <string>Дата выполнения</string>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="1">
+      <widget class="QDateTimeEdit" name="dteDeadline"/>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QGroupBox" name="gbxProblems">
+   <property name="geometry">
+    <rect>
+     <x>260</x>
+     <y>10</y>
+     <width>421</width>
+     <height>261</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>Суть проблемы</string>
+   </property>
+   <widget class="QPushButton" name="pbtnAddProblem">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>20</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>+</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="verticalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>50</y>
+      <width>441</width>
+      <height>201</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="vblProblems"/>
+   </widget>
+  </widget>
+  <widget class="QPushButton" name="pbtnCancel">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>350</y>
+     <width>201</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Отмена</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

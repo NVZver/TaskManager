@@ -16,6 +16,23 @@ public:
     ~TaskManager();
 
 private:
+    ///
+    /// \brief refresh
+    /// Обновляет данные о задачах и пропущенных звонках
+    void refresh();
+
+private slots:
+    void on_pbtnDayBack_clicked();
+
+    void on_pbtnToday_clicked();
+
+    void on_pbtnDayNext_clicked();
+
+    void on_dteSearch_dateChanged(const QDate &date);
+
+    void on_pbtnCreateTask_clicked();
+
+private:
     Ui::TaskManager *ui;
 };
 
