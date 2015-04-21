@@ -13,8 +13,7 @@ class Task : public QWidget
     Q_OBJECT
 
 public:
-    Task(ConnectToDataBase *connToDB, QString idTask, QDate dateCompletion, QWidget *parent = 0);
-    Task(ConnectToDataBase *connToDB, QString contractNumber, QWidget *parent = 0);
+    Task(ConnectToDataBase *connToDB, QString contractNumber, QDate dateCompletion, QWidget *parent = 0);
     ~Task();
 
     ConnectToDataBase *connToDB() const;
@@ -32,7 +31,7 @@ private:
     Ui::Task *ui;
 
     void fillingDetails(QString contractNumber);
-    void updateTaskData(QString idTask, QDate searchDate);
+    void updateTaskData(QString contractNumber, QDate searchDate);
 };
 
 #endif // TASK_H

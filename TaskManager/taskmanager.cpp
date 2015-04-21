@@ -28,6 +28,7 @@ TaskManager::~TaskManager()
 ConnectToDataBase *TaskManager::connToDB() const
 {
     return mConnToDB;
+
 }
 
 void TaskManager::setConnToDB(ConnectToDataBase *connToDB)

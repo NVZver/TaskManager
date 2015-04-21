@@ -132,11 +132,12 @@ ConnectToDataBase *CustomerSearch::connToDB() const
 void CustomerSearch::setConnToDB(ConnectToDataBase *connToDB)
 {
     mConnToDB = connToDB;
+
 }
 
 void CustomerSearch::on_tvCustomers_doubleClicked(const QModelIndex &index)
 {
     QString contractNimber = ui->tvCustomers->model()->data(ui->tvCustomers->model()->index(index.row(),0),Qt::DisplayRole).toString();
-    Task* newTask = new Task(connToDB(), contractNimber);
+    Task* newTask = new Task(connToDB(), contractNimber, QDate::currentDate());
     newTask->show();
 }

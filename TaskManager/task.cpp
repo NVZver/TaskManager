@@ -2,21 +2,14 @@
 #include "ui_task.h"
 #include "connecttodatabase.h"
 
-Task::Task(ConnectToDataBase *connToDB, QString idTask, QDate dateCompletion, QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::Task)
-{
-    ui->setupUi(this);
-    setConnToDB(connToDB);
-}
-
-Task::Task(ConnectToDataBase *connToDB, QString contractNumber, QWidget *parent) :
+Task::Task(ConnectToDataBase *connToDB, QString contractNumber, QDate dateCompletion, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Task)
 {
     ui->setupUi(this);
     setConnToDB(connToDB);
     fillingDetails(contractNumber);
+    updateTaskData(contractNumber, dateCompletion);
 }
 
 Task::~Task()
@@ -45,14 +38,21 @@ void Task::fillingDetails(QString contractNumber)
     ui->lntStreet->setText(mConnToDB->getQueryModel()->data(mConnToDB->getQueryModel()->index(0,2),Qt::DisplayRole).toString());
     ui->lntHosue->setText(mConnToDB->getQueryModel()->data(mConnToDB->getQueryModel()->index(0,3),Qt::DisplayRole).toString());
     ui->lntApartment->setText(mConnToDB->getQueryModel()->data(mConnToDB->getQueryModel()->index(0,4),Qt::DisplayRole).toString());
+
 }
 
 /// Заполняет gbxProblems
 /// \brief Task::updateTaskData
 /// \param idTask - Номер задачи
 ///
-void Task::updateTaskData(QString idTask, QDate searchDate)
+void Task::updateTaskData(QString contractNumber, QDate searchDate)
 {
+    ui->dteDeadline->setDate(searchDate);
+    QString command = "select idtask, problem, result "
+                      "from tasks "
+                      "where contract_number = "+contractNumber+" and date_completion like '"+searchDate.toString("yyyy-MM-dd")+"%'";
+    mConnToDB->enterCommand(command);
+    qDebug()<<"QUERY"<<mConnToDB->getQueryModel();
 
 }
 

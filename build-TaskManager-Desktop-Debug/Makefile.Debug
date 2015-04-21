@@ -442,6 +442,9 @@ debug/moc_customersearch.cpp: C:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtWidgets/QW
 		C:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtCore/qfiledevice.h \
 		C:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtGui/qvector2d.h \
 		C:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtGui/qtouchdevice.h \
+		C:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtCore/QDebug \
+		C:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtCore/QDate \
+		C:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtCore/qdatetime.h \
 		../TaskManager/customersearch.h
 	C:\Qt\Qt5.4.0\5.4\mingw491_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 -IC:/Qt/Qt5.4.0/5.4/mingw491_32/mkspecs/win32-g++ -IC:/Users/zvere143/Projects/CLIENT_SERVER_CRM/taskmanager/TaskManager -IC:/Qt/Qt5.4.0/5.4/mingw491_32/include -IC:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtWidgets -IC:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtGui -IC:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtSql -IC:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtCore -I. ..\TaskManager\customersearch.h -o debug\moc_customersearch.cpp
 
@@ -547,6 +550,7 @@ debug/moc_task.cpp: C:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtWidgets/QWidget \
 		C:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtCore/qfiledevice.h \
 		C:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtGui/qvector2d.h \
 		C:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtGui/qtouchdevice.h \
+		C:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtCore/QDebug \
 		../TaskManager/task.h
 	C:\Qt\Qt5.4.0\5.4\mingw491_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 -IC:/Qt/Qt5.4.0/5.4/mingw491_32/mkspecs/win32-g++ -IC:/Users/zvere143/Projects/CLIENT_SERVER_CRM/taskmanager/TaskManager -IC:/Qt/Qt5.4.0/5.4/mingw491_32/include -IC:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtWidgets -IC:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtGui -IC:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtSql -IC:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtCore -I. ..\TaskManager\task.h -o debug\moc_task.cpp
 
@@ -841,7 +845,23 @@ debug/taskmanager.o: ../TaskManager/taskmanager.cpp ../TaskManager/taskmanager.h
 		C:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtWidgets/QTabWidget \
 		C:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtWidgets/QTableView \
 		C:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtWidgets/qtableview.h \
-		../TaskManager/customersearch.h
+		../TaskManager/customersearch.h \
+		C:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtCore/QDebug \
+		C:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtCore/QDate \
+		../TaskManager/connecttodatabase.h \
+		C:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtCore/QObject \
+		C:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtSql/QSqlDatabase \
+		C:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtSql/qsqldatabase.h \
+		C:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtSql/qsql.h \
+		C:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtSql/QSqlDriver \
+		C:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtSql/qsqldriver.h \
+		C:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtSql/QSqlQuery \
+		C:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtSql/qsqlquery.h \
+		C:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtSql/QSqlTableModel \
+		C:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtSql/qsqltablemodel.h \
+		C:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtSql/qsqlquerymodel.h \
+		C:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtSql/QSqlRelationalTableModel \
+		C:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtSql/qsqlrelationaltablemodel.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\taskmanager.o ..\TaskManager\taskmanager.cpp
 
 debug/authentication.o: ../TaskManager/authentication.cpp ../TaskManager/authentication.h \
@@ -1101,6 +1121,9 @@ debug/customersearch.o: ../TaskManager/customersearch.cpp ../TaskManager/custome
 		C:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtCore/qfiledevice.h \
 		C:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtGui/qvector2d.h \
 		C:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtGui/qtouchdevice.h \
+		C:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtCore/QDebug \
+		C:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtCore/QDate \
+		C:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtCore/qdatetime.h \
 		ui_customersearch.h \
 		C:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtCore/QVariant \
 		C:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtWidgets/QAction \
@@ -1152,9 +1175,25 @@ debug/customersearch.o: ../TaskManager/customersearch.cpp ../TaskManager/custome
 		C:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtGui/qtextoption.h \
 		C:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtWidgets/QPushButton \
 		C:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtWidgets/qpushbutton.h \
+		C:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtWidgets/QTabWidget \
 		C:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtWidgets/QTableView \
 		C:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtWidgets/qtableview.h \
-		C:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtWidgets/QVBoxLayout
+		C:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtWidgets/QVBoxLayout \
+		../TaskManager/connecttodatabase.h \
+		C:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtCore/QObject \
+		C:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtSql/QSqlDatabase \
+		C:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtSql/qsqldatabase.h \
+		C:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtSql/qsql.h \
+		C:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtSql/QSqlDriver \
+		C:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtSql/qsqldriver.h \
+		C:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtSql/QSqlQuery \
+		C:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtSql/qsqlquery.h \
+		C:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtSql/QSqlTableModel \
+		C:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtSql/qsqltablemodel.h \
+		C:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtSql/qsqlquerymodel.h \
+		C:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtSql/QSqlRelationalTableModel \
+		C:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtSql/qsqlrelationaltablemodel.h \
+		../TaskManager/task.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\customersearch.o ..\TaskManager\customersearch.cpp
 
 debug/task.o: ../TaskManager/task.cpp ../TaskManager/task.h \
@@ -1260,6 +1299,7 @@ debug/task.o: ../TaskManager/task.cpp ../TaskManager/task.h \
 		C:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtCore/qfiledevice.h \
 		C:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtGui/qvector2d.h \
 		C:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtGui/qtouchdevice.h \
+		C:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtCore/QDebug \
 		ui_task.h \
 		C:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtCore/QVariant \
 		C:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtWidgets/QAction \
@@ -1321,7 +1361,21 @@ debug/task.o: ../TaskManager/task.cpp ../TaskManager/task.h \
 		C:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtWidgets/QTextEdit \
 		C:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtWidgets/qtextedit.h \
 		C:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtGui/qtextdocument.h \
-		C:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtWidgets/QVBoxLayout
+		C:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtWidgets/QVBoxLayout \
+		../TaskManager/connecttodatabase.h \
+		C:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtCore/QObject \
+		C:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtSql/QSqlDatabase \
+		C:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtSql/qsqldatabase.h \
+		C:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtSql/qsql.h \
+		C:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtSql/QSqlDriver \
+		C:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtSql/qsqldriver.h \
+		C:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtSql/QSqlQuery \
+		C:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtSql/qsqlquery.h \
+		C:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtSql/QSqlTableModel \
+		C:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtSql/qsqltablemodel.h \
+		C:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtSql/qsqlquerymodel.h \
+		C:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtSql/QSqlRelationalTableModel \
+		C:/Qt/Qt5.4.0/5.4/mingw491_32/include/QtSql/qsqlrelationaltablemodel.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\task.o ..\TaskManager\task.cpp
 
 debug/connecttodatabase.o: ../TaskManager/connecttodatabase.cpp ../TaskManager/connecttodatabase.h \
