@@ -36,7 +36,7 @@ private:
 
     void fillingDetails(QString contractNumber);
     void updateTaskData(QString contractNumber, QDate searchDate);
-    void createProblem();
+    void createProblem(int IdTask, QString problemValue, QString resultValue);
     void removeProblem(int id);
 };
 

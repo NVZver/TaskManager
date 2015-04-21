@@ -38,6 +38,8 @@ private slots:
 
     void on_pbtnCreateTask_clicked();
 
+    void on_tvTasks_doubleClicked(const QModelIndex &index);
+
 private:
     Ui::TaskManager *ui;
 };

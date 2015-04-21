@@ -2,6 +2,7 @@
 #include "ui_taskmanager.h"
 #include "customersearch.h"
 #include "connecttodatabase.h"
+#include "task.h"
 
 // Главная форма приложения
 // Отображается: информация о задачах на сегодня
@@ -109,4 +110,11 @@ void TaskManager::on_pbtnCreateTask_clicked()
 {
     CustomerSearch *customerSearch = new CustomerSearch(connToDB());
     customerSearch->show();
+}
+
+void TaskManager::on_tvTasks_doubleClicked(const QModelIndex &index)
+{
+    QString contractNimber = ui->tvTasks->model()->data(ui->tvTasks->model()->index(index.row(),9),Qt::DisplayRole).toString();
+    Task* newTask = new Task(connToDB(),contractNimber, ui->dteSearch->date());
+    newTask->show();
 }

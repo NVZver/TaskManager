@@ -50,18 +50,26 @@ void Task::fillingDetails(QString contractNumber)
 void Task::updateTaskData(QString contractNumber, QDate searchDate)
 {
     ui->dteDeadline->setDate(searchDate);
-    QString command = "select idtask, problem, result "
+    QString command = "select tasks.idtask, problems.name, task_results.result_name "
                       "from tasks "
+                      "inner join problems on problems.idproblem = tasks.problem "
+                      "inner join task_results on task_results.idtask_result = tasks.result "
                       "where contract_number = "+contractNumber+" and date_completion like '"+searchDate.toString("yyyy-MM-dd")+"%'";
     mConnToDB->enterCommand(command);
-    qDebug()<<"QUERY"<<mConnToDB->getQueryModel();
+    for(int i =0; mConnToDB->getQueryModel()->rowCount(); ++i)
+    {
+        int idTaskList = mConnToDB->getQueryModel()->data(mConnToDB->getQueryModel()->index(i,0)).toInt();
+        QString problemsValues = mConnToDB->getQueryModel()->data(mConnToDB->getQueryModel()->index(i,1)).toString();
+        QString resultsValuesList = mConnToDB->getQueryModel()->data(mConnToDB->getQueryModel()->index(i,2)).toString();
+        createProblem(idTaskList, problemsValues, resultsValuesList);
+    }
 
 }
 
 /// Создание проблемы и добавление ее на форму
 /// \brief Task::createProblem
 ///
-void Task::createProblem()
+void Task::createProblem(int IdTask, QString problemValue, QString resultValue)
 {
     QList<QString> problemsNamesList;
     QList<QString> resultsNameslist;
@@ -82,7 +90,11 @@ void Task::createProblem()
 
 
     Problem* nProblem = new Problem(mProblemsList.count(), problemsNamesList, resultsNameslist);
+    nProblem->setTaskID(IdTask);
+    nProblem->setStrProblemValue(problemValue);
+    nProblem->setStrResultValue(resultValue);
     connect(nProblem, SIGNAL(removeProblem(int)), SLOT(slotRemoveProblem(int)));
+
     mProblemsList <<nProblem;
     ui->vblProblems->addWidget(nProblem);
 }
@@ -117,7 +129,7 @@ void Task::on_pbtnCancel_clicked()
 
 void Task::on_pbtnAddProblem_clicked()
 {
-    createProblem();
+    //createProblem();
 }
 
 void Task::slotRemoveProblem(int id)

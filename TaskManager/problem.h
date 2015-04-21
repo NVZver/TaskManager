@@ -27,11 +27,19 @@ public:
     int getResultValue() const;
     void setResultValue(int value);
 
+    QString getStrProblemValue() const;
+    void setStrProblemValue(const QString &value);
+
+    QString getStrResultValue() const;
+    void setStrResultValue(const QString &value);
+
 private:
     int taskID;
     int Id;
     int problemValue;
     int resultValue;
+    QString strProblemValue;
+    QString strResultValue;
     bool isNew;
     QComboBox* cbxProblems;
     QComboBox* cbxResults;

@@ -68,6 +68,28 @@ void Problem::setResultValue(int value)
 {
     resultValue = value;
 }
+QString Problem::getStrProblemValue() const
+{
+    return strProblemValue;
+}
+
+void Problem::setStrProblemValue(const QString &value)
+{
+    strProblemValue = value;
+    cbxProblems->setCurrentText(value);
+}
+QString Problem::getStrResultValue() const
+{
+    return strResultValue;
+}
+
+void Problem::setStrResultValue(const QString &value)
+{
+    strResultValue = value;
+    cbxResults->setCurrentText(value);
+}
+
+
 
 
 
