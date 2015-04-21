@@ -5,8 +5,10 @@ INPUT(
 ./debug\customersearch.o
 ./debug\task.o
 ./debug\connecttodatabase.o
+./debug\problem.o
 ./debug\moc_taskmanager.o
 ./debug\moc_authentication.o
 ./debug\moc_customersearch.o
 ./debug\moc_task.o
+./debug\moc_problem.o
 );

@@ -8,6 +8,7 @@ namespace Ui {
 class Task;
 }
 class ConnectToDataBase;
+class Problem;
 class Task : public QWidget
 {
     Q_OBJECT
@@ -26,7 +27,10 @@ private slots:
 
     void on_pbtnAddProblem_clicked();
 
+    void slotRemoveProblem(int id);
+
 private:
+    QList<Problem*> mProblemsList;
     ConnectToDataBase* mConnToDB;
     Ui::Task *ui;
 

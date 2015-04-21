@@ -1,6 +1,7 @@
 #include "task.h"
 #include "ui_task.h"
 #include "connecttodatabase.h"
+#include "problem.h"
 
 Task::Task(ConnectToDataBase *connToDB, QString contractNumber, QDate dateCompletion, QWidget *parent) :
     QWidget(parent),
@@ -10,6 +11,7 @@ Task::Task(ConnectToDataBase *connToDB, QString contractNumber, QDate dateComple
     setConnToDB(connToDB);
     fillingDetails(contractNumber);
     updateTaskData(contractNumber, dateCompletion);
+    mProblemsList.clear();
 }
 
 Task::~Task()
@@ -68,7 +70,24 @@ void Task::on_pbtnCancel_clicked()
 
 void Task::on_pbtnAddProblem_clicked()
 {
+    Problem* nProblem = new Problem(mProblemsList.count());
+    connect(nProblem, SIGNAL(removeProblem(int)), SLOT(slotRemoveProblem(int)));
+    mProblemsList <<nProblem;
+    ui->vblProblems->addWidget(nProblem);
+}
 
+void Task::slotRemoveProblem(int id)
+{
+    qDebug()<<"ID="<<id;
+    for(int i = id; i<mProblemsList.count() -1 ; ++i)
+    {
+        int ii = i;
+        ++ii;
+        mProblemsList[ii]->setId(i);
+    }
+    delete mProblemsList[id];
+    ui->vblProblems->removeWidget(mProblemsList[id]);
+    mProblemsList.removeAt(id);
 }
 
 
