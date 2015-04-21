@@ -13,6 +13,7 @@ TaskManager::TaskManager(QWidget *parent) :
     ui(new Ui::TaskManager)
 {
     ui->setupUi(this);
+    connDataBase = new ConnectToDataBase();
 }
 
 TaskManager::~TaskManager()

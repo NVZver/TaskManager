@@ -1,0 +1,12 @@
+INPUT(
+./debug\main.o
+./debug\taskmanager.o
+./debug\authentication.o
+./debug\customersearch.o
+./debug\task.o
+./debug\connecttodatabase.o
+./debug\moc_taskmanager.o
+./debug\moc_authentication.o
+./debug\moc_customersearch.o
+./debug\moc_task.o
+);
