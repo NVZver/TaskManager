@@ -1,6 +1,7 @@
 #include "customersearch.h"
 #include "ui_customersearch.h"
 #include "connecttodatabase.h"
+#include "task.h"
 
 CustomerSearch::CustomerSearch(ConnectToDataBase *connToDB, QWidget *parent) :
     QWidget(parent),
@@ -61,7 +62,7 @@ void CustomerSearch::on_lntStreet_textChanged(const QString &arg1)
     }
     else
     {
-        condition = "and addresses.street like '"+arg1+"%'";
+        condition = "addresses.street like '"+arg1+"%'";
         updateSearchData(condition);
     }
 }
@@ -133,6 +134,9 @@ void CustomerSearch::setConnToDB(ConnectToDataBase *connToDB)
     mConnToDB = connToDB;
 }
 
-
-
-
+void CustomerSearch::on_tvCustomers_doubleClicked(const QModelIndex &index)
+{
+    QString contractNimber = ui->tvCustomers->model()->data(ui->tvCustomers->model()->index(index.row(),0),Qt::DisplayRole).toString();
+    Task* newTask = new Task(connToDB(), contractNimber);
+    newTask->show();
+}
