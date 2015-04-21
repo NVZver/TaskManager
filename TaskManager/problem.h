@@ -10,13 +10,10 @@ class Problem : public QWidget
 {
     Q_OBJECT
 public:
-    explicit Problem(int id, QWidget *parent = 0);
+    explicit Problem(int id, QList<QString> problemList, QList<QString> resultList, QWidget *parent = 0);
     ~Problem();
     int getTaskID() const;
     void setTaskID(int value);
-
-    int getIdResult() const;
-    void setIdResult(int value);
 
     int getId() const;
     void setId(int value);
@@ -24,10 +21,17 @@ public:
     bool getIsNew() const;
     void setIsNew(bool value);
 
+    int getProblemValue() const;
+    void setProblemValue(int value);
+
+    int getResultValue() const;
+    void setResultValue(int value);
+
 private:
     int taskID;
     int Id;
-    int IdResult;
+    int problemValue;
+    int resultValue;
     bool isNew;
     QComboBox* cbxProblems;
     QComboBox* cbxResults;

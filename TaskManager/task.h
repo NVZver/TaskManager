@@ -36,6 +36,8 @@ private:
 
     void fillingDetails(QString contractNumber);
     void updateTaskData(QString contractNumber, QDate searchDate);
+    void createProblem();
+    void removeProblem(int id);
 };
 
 #endif // TASK_H
