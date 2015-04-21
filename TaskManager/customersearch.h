@@ -7,13 +7,17 @@ namespace Ui {
 class CustomerSearch;
 }
 
+class ConnectToDataBase;
 class CustomerSearch : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit CustomerSearch(QWidget *parent = 0);
+    explicit CustomerSearch(ConnectToDataBase* connToDB, QWidget *parent = 0);
     ~CustomerSearch();
+
+    ConnectToDataBase *connToDB() const;
+    void setConnToDB(ConnectToDataBase *connToDB);
 
 private slots:
     void on_lntContractNumber_textChanged(const QString &arg1);
@@ -28,8 +32,13 @@ private slots:
 
     void on_lntHouse_textChanged(const QString &arg1);
 
+    void on_lntApartment_textChanged(const QString &arg1);
+
 private:
+    ConnectToDataBase* mConnToDB;
     Ui::CustomerSearch *ui;
+
+    void updateSearchData(QString condition);
 };
 
 #endif // CUSTOMERSEARCH_H

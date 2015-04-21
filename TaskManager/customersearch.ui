@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>653</width>
-    <height>376</height>
+    <width>1067</width>
+    <height>248</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,86 +16,14 @@
   <widget class="QTableView" name="tvCustomers">
    <property name="geometry">
     <rect>
-     <x>150</x>
-     <y>40</y>
-     <width>501</width>
-     <height>331</height>
+     <x>350</x>
+     <y>70</y>
+     <width>711</width>
+     <height>171</height>
     </rect>
    </property>
   </widget>
-  <widget class="QWidget" name="">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>41</y>
-     <width>131</width>
-     <height>332</height>
-    </rect>
-   </property>
-   <layout class="QVBoxLayout" name="verticalLayout">
-    <item>
-     <widget class="QLabel" name="lblContractNumber">
-      <property name="text">
-       <string>№ договора</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLineEdit" name="lntContractNumber"/>
-    </item>
-    <item>
-     <widget class="QLabel" name="lblPhoneNumber">
-      <property name="text">
-       <string>Телефон</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLineEdit" name="lntPhoneNumber"/>
-    </item>
-    <item>
-     <widget class="QLabel" name="lblLastName">
-      <property name="text">
-       <string>Фамилия</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLineEdit" name="lntLName"/>
-    </item>
-    <item>
-     <widget class="QLabel" name="lblLocality">
-      <property name="text">
-       <string>Нас. пункт</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLineEdit" name="lntLocality"/>
-    </item>
-    <item>
-     <widget class="QLabel" name="label_2">
-      <property name="text">
-       <string>Улица</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLineEdit" name="lntStreet"/>
-    </item>
-    <item>
-     <widget class="QLabel" name="label_3">
-      <property name="text">
-       <string>Дом</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLineEdit" name="lntHouse"/>
-    </item>
-   </layout>
-  </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -118,11 +46,167 @@
        <bool>false</bool>
       </property>
       <property name="text">
-       <string>PushButton</string>
+       <string>Создать задачу</string>
       </property>
      </widget>
     </item>
    </layout>
+  </widget>
+  <widget class="QTabWidget" name="tabWidget">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>50</y>
+     <width>331</width>
+     <height>191</height>
+    </rect>
+   </property>
+   <property name="currentIndex">
+    <number>1</number>
+   </property>
+   <widget class="QWidget" name="tabSearchByContract">
+    <attribute name="title">
+     <string>Договор</string>
+    </attribute>
+    <widget class="QWidget" name="">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>12</y>
+       <width>311</width>
+       <height>131</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_6">
+      <item>
+       <widget class="QLabel" name="lblContractNumber">
+        <property name="text">
+         <string>№ договора</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="lntContractNumber"/>
+      </item>
+      <item>
+       <widget class="QLabel" name="lblPhoneNumber">
+        <property name="text">
+         <string>Телефон</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="lntPhoneNumber"/>
+      </item>
+      <item>
+       <widget class="QLabel" name="lblLastName">
+        <property name="text">
+         <string>Фамилия</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="lntLName"/>
+      </item>
+     </layout>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="tabSearchByAddress">
+    <attribute name="title">
+     <string>Адрес</string>
+    </attribute>
+    <widget class="QWidget" name="">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>21</y>
+       <width>311</width>
+       <height>137</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_5">
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <item>
+         <widget class="QLabel" name="lblLocality">
+          <property name="text">
+           <string>Нас. пункт</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="lntLocality"/>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_2">
+          <property name="text">
+           <string>Улица</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="lntStreet"/>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_3">
+          <item>
+           <widget class="QLabel" name="label_3">
+            <property name="text">
+             <string>Дом</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="lntHouse"/>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_4">
+          <item>
+           <widget class="QLabel" name="label_4">
+            <property name="text">
+             <string>Квартира</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="lntApartment"/>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+    <zorder>label_4</zorder>
+    <zorder>lntLocality</zorder>
+    <zorder>label_3</zorder>
+    <zorder>label_2</zorder>
+    <zorder>lntHouse</zorder>
+    <zorder>lblLocality</zorder>
+    <zorder>lntStreet</zorder>
+    <zorder>lntApartment</zorder>
+    <zorder>lntLocality</zorder>
+    <zorder>label_3</zorder>
+    <zorder>label_4</zorder>
+    <zorder>label_2</zorder>
+    <zorder>lntHouse</zorder>
+    <zorder>lblLocality</zorder>
+    <zorder>lntStreet</zorder>
+    <zorder>lntApartment</zorder>
+    <zorder>lntLocality</zorder>
+    <zorder>label_3</zorder>
+    <zorder>label_4</zorder>
+    <zorder>label_2</zorder>
+    <zorder>lntHouse</zorder>
+    <zorder>lblLocality</zorder>
+    <zorder>lntStreet</zorder>
+   </widget>
   </widget>
  </widget>
  <resources/>

@@ -2,6 +2,10 @@
 
 ConnectToDataBase::ConnectToDataBase()
 {
+    if(!db.open())
+    {
+        connectingToDB();
+    }
 }
 QSqlQueryModel *ConnectToDataBase::getQueryModel() const
 {
