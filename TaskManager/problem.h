@@ -5,15 +5,15 @@
 #include <QComboBox>
 #include <QPushButton>
 #include <QLayout>
-
+#include <QDebug>
 class Problem : public QWidget
 {
     Q_OBJECT
 public:
     explicit Problem(int id, QList<QString> problemList, QList<QString> resultList, QWidget *parent = 0);
     ~Problem();
-    int getTaskID() const;
-    void setTaskID(int value);
+    QString getTaskID() const;
+    void setTaskID(QString value);
 
     int getId() const;
     void setId(int value);
@@ -33,11 +33,20 @@ public:
     QString getStrResultValue() const;
     void setStrResultValue(const QString &value);
 
+    QList<QString> getProblemsID() const;
+    void setProblemsID(const QList<QString> &value);
+    QString getProblemID();
+
+    QList<QString> getResultsID() const;
+    void setResultsID(const QList<QString> &value);
+    QString getResultID();
 private:
-    int taskID;
+    QString taskID;
     int Id;
     int problemValue;
+    QList<QString>problemsID;
     int resultValue;
+    QList<QString> resultsID;
     QString strProblemValue;
     QString strResultValue;
     bool isNew;

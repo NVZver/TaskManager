@@ -40,6 +40,8 @@ private slots:
 
     void on_tvTasks_doubleClicked(const QModelIndex &index);
 
+    void slotCreationCompleted();
+
 private:
     Ui::TaskManager *ui;
 };

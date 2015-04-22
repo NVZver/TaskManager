@@ -109,6 +109,7 @@ void TaskManager::on_dteSearch_dateChanged(const QDate &date)
 void TaskManager::on_pbtnCreateTask_clicked()
 {
     CustomerSearch *customerSearch = new CustomerSearch(connToDB());
+    connect(customerSearch, SIGNAL(CreationCompleted()), SLOT(slotCreationCompleted()));
     customerSearch->show();
 }
 
@@ -116,5 +117,11 @@ void TaskManager::on_tvTasks_doubleClicked(const QModelIndex &index)
 {
     QString contractNimber = ui->tvTasks->model()->data(ui->tvTasks->model()->index(index.row(),9),Qt::DisplayRole).toString();
     Task* newTask = new Task(connToDB(),contractNimber, ui->dteSearch->date());
+    connect(newTask, SIGNAL(CreationCompleted()), SLOT(slotCreationCompleted()));
     newTask->show();
+}
+
+void TaskManager::slotCreationCompleted()
+{
+    refreshData();
 }

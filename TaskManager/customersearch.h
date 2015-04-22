@@ -20,7 +20,8 @@ public:
 
     ConnectToDataBase *connToDB() const;
     void setConnToDB(ConnectToDataBase *connToDB);
-
+signals:
+    void CreationCompleted();
 private slots:
     void on_lntContractNumber_textChanged(const QString &arg1);
 

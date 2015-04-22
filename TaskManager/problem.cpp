@@ -3,6 +3,7 @@
 Problem::Problem(int id, QList<QString>problemList, QList<QString>resultList, QWidget *parent) : QWidget(parent)
 {
     setId(id);
+    setIsNew(true);
     QHBoxLayout* HBLayout = new QHBoxLayout();
     cbxProblems = new QComboBox();
     cbxProblems->addItems(problemList);
@@ -22,12 +23,12 @@ Problem::~Problem()
 {
 
 }
-int Problem::getTaskID() const
+QString Problem::getTaskID() const
 {
     return taskID;
 }
 
-void Problem::setTaskID(int value)
+void Problem::setTaskID(QString value)
 {
     taskID = value;
 }
@@ -39,7 +40,7 @@ int Problem::getId() const
 
 void Problem::setId(int value)
 {
-    Id = value;
+    Id = value;       
 }
 bool Problem::getIsNew() const
 {
@@ -49,6 +50,11 @@ bool Problem::getIsNew() const
 void Problem::setIsNew(bool value)
 {
     isNew = value;
+    if(!value)
+    {
+        this->cbxProblems->setEnabled(false);
+        this->pbtnRemove->setVisible(false);
+    }
 }
 int Problem::getProblemValue() const
 {
@@ -88,6 +94,37 @@ void Problem::setStrResultValue(const QString &value)
     strResultValue = value;
     cbxResults->setCurrentText(value);
 }
+QList<QString> Problem::getProblemsID() const
+{
+    return problemsID;
+}
+
+void Problem::setProblemsID(const QList<QString> &value)
+{
+    problemsID = value;
+}
+
+QString Problem::getProblemID()
+{
+    return getProblemsID()[cbxProblems->currentIndex()];
+}
+
+QList<QString> Problem::getResultsID() const
+{
+    return resultsID;
+}
+
+void Problem::setResultsID(const QList<QString> &value)
+{
+    resultsID = value;
+}
+
+QString Problem::getResultID()
+{
+    return getResultsID()[cbxResults->currentIndex()];
+}
+
+
 
 
 

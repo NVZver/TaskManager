@@ -19,6 +19,8 @@ public:
 
     ConnectToDataBase *connToDB() const;
     void setConnToDB(ConnectToDataBase *connToDB);
+signals:
+    void CreationCompleted();
 
 private slots:
     void on_pbtnCreate_clicked();
@@ -30,14 +32,21 @@ private slots:
     void slotRemoveProblem(int id);
 
 private:
+    QList<QString> mProblemsIDList;
+    QList<QString> mProblemsNamesList;
+    QList<QString> mResultIDList;
+    QList<QString> mResultsNameslist;
     QList<Problem*> mProblemsList;
     ConnectToDataBase* mConnToDB;
     Ui::Task *ui;
 
     void fillingDetails(QString contractNumber);
+    void updateProblemsData();
     void updateTaskData(QString contractNumber, QDate searchDate);
-    void createProblem(int IdTask, QString problemValue, QString resultValue);
+    void createProblem(QList<QString> problemsNames, QList<QString> resultsNames);
     void removeProblem(int id);
+    void createTask(int index);
+    void updateTask(int index);
 };
 
 #endif // TASK_H

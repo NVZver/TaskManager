@@ -40,7 +40,7 @@ public:
     QLabel *lblStreet;
     QLineEdit *lntStreet;
     QLabel *lblHouse;
-    QLineEdit *lntHosue;
+    QLineEdit *lntHouse;
     QLineEdit *lntApartment;
     QLabel *lblApartment;
     QLabel *lblContractNumber;
@@ -100,10 +100,10 @@ public:
 
         formLayout->setWidget(3, QFormLayout::LabelRole, lblHouse);
 
-        lntHosue = new QLineEdit(layoutWidget);
-        lntHosue->setObjectName(QStringLiteral("lntHosue"));
+        lntHouse = new QLineEdit(layoutWidget);
+        lntHouse->setObjectName(QStringLiteral("lntHouse"));
 
-        formLayout->setWidget(3, QFormLayout::FieldRole, lntHosue);
+        formLayout->setWidget(3, QFormLayout::FieldRole, lntHouse);
 
         lntApartment = new QLineEdit(layoutWidget);
         lntApartment->setObjectName(QStringLiteral("lntApartment"));
