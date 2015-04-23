@@ -41,15 +41,11 @@ private slots:
 
     void on_tvCustomers_doubleClicked(const QModelIndex &index);
 
-
-
     void on_chbxNoCustomer_clicked();
 
     void on_pbtnCreateTask_clicked();
 
     void on_tvCustomers_pressed(const QModelIndex &index);
-
-    void on_tvCustomers_clicked(const QModelIndex &index);
 
 private:
     ConnectToDataBase* mConnToDB;
