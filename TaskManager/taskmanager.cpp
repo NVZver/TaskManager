@@ -125,3 +125,8 @@ void TaskManager::slotCreationCompleted()
 {
     refreshData();
 }
+
+void TaskManager::on_tvTasks_pressed(const QModelIndex &index)
+{
+    ui->tvTasks->selectRow(index.row());
+}

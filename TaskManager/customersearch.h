@@ -20,6 +20,8 @@ public:
 
     ConnectToDataBase *connToDB() const;
     void setConnToDB(ConnectToDataBase *connToDB);
+
+
 signals:
     void CreationCompleted();
 private slots:
@@ -45,10 +47,12 @@ private slots:
 
     void on_pbtnCreateTask_clicked();
 
+    void on_tvCustomers_pressed(const QModelIndex &index);
+
 private:
     ConnectToDataBase* mConnToDB;
     Ui::CustomerSearch *ui;
-
+    int activeRow;
     void updateSearchData(QString condition);
     void openNewTask(QString contractNumber);
 };

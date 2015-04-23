@@ -44,7 +44,7 @@ QT_MOC_LITERAL(11, 230, 28), // "on_tvCustomers_doubleClicked"
 QT_MOC_LITERAL(12, 259, 5), // "index"
 QT_MOC_LITERAL(13, 265, 25), // "on_chbxNoCustomer_clicked"
 QT_MOC_LITERAL(14, 291, 25), // "on_pbtnCreateTask_clicked"
-QT_MOC_LITERAL(15, 317, 22) // "on_tvCustomers_clicked"
+QT_MOC_LITERAL(15, 317, 22) // "on_tvCustomers_pressed"
 
     },
     "CustomerSearch\0CreationCompleted\0\0"
@@ -58,7 +58,7 @@ QT_MOC_LITERAL(15, 317, 22) // "on_tvCustomers_clicked"
     "on_tvCustomers_doubleClicked\0index\0"
     "on_chbxNoCustomer_clicked\0"
     "on_pbtnCreateTask_clicked\0"
-    "on_tvCustomers_clicked"
+    "on_tvCustomers_pressed"
 };
 #undef QT_MOC_LITERAL
 
@@ -126,7 +126,7 @@ void CustomerSearch::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _
         case 8: _t->on_tvCustomers_doubleClicked((*reinterpret_cast< const QModelIndex(*)>(_a[1]))); break;
         case 9: _t->on_chbxNoCustomer_clicked(); break;
         case 10: _t->on_pbtnCreateTask_clicked(); break;
-        case 11: _t->on_tvCustomers_clicked((*reinterpret_cast< const QModelIndex(*)>(_a[1]))); break;
+        case 11: _t->on_tvCustomers_pressed((*reinterpret_cast< const QModelIndex(*)>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {

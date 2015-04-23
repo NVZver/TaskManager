@@ -78,7 +78,7 @@ public:
 
     void retranslateUi(QWidget *Authentication)
     {
-        Authentication->setWindowTitle(QApplication::translate("Authentication", "Form", 0));
+        Authentication->setWindowTitle(QString());
         pbtnOK->setText(QApplication::translate("Authentication", "OK", 0));
         pbtnCancel->setText(QApplication::translate("Authentication", "\320\236\321\202\320\274\320\265\320\275\320\260", 0));
     } // retranslateUi

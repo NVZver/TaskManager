@@ -148,8 +148,6 @@ void CustomerSearch::on_tvCustomers_doubleClicked(const QModelIndex &index)
     openNewTask(ui->tvCustomers->model()->data(ui->tvCustomers->model()->index(index.row(),0),Qt::DisplayRole).toString());
 }
 
-
-
 void CustomerSearch::on_chbxNoCustomer_clicked()
 {
     if(ui->chbxNoCustomer->isChecked())
@@ -168,5 +166,20 @@ void CustomerSearch::on_chbxNoCustomer_clicked()
 
 void CustomerSearch::on_pbtnCreateTask_clicked()
 {
-    openNewTask("");
+    if(ui->chbxNoCustomer->isChecked())
+    {
+        openNewTask("");
+    }
+    else
+    {
+        openNewTask(ui->tvCustomers->model()->data(ui->tvCustomers->model()->index(activeRow,0),Qt::DisplayRole).toString());
+    }
+
+}
+
+void CustomerSearch::on_tvCustomers_pressed(const QModelIndex &index)
+{
+    ui->tvCustomers->selectRow(index.row());
+    activeRow = index.row();
+    ui->pbtnCreateTask->setEnabled(true);
 }
