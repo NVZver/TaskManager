@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_CustomerSearch_t {
-    QByteArrayData data[17];
-    char stringdata[363];
+    QByteArrayData data[16];
+    char stringdata[340];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -44,8 +44,7 @@ QT_MOC_LITERAL(11, 230, 28), // "on_tvCustomers_doubleClicked"
 QT_MOC_LITERAL(12, 259, 5), // "index"
 QT_MOC_LITERAL(13, 265, 25), // "on_chbxNoCustomer_clicked"
 QT_MOC_LITERAL(14, 291, 25), // "on_pbtnCreateTask_clicked"
-QT_MOC_LITERAL(15, 317, 22), // "on_tvCustomers_pressed"
-QT_MOC_LITERAL(16, 340, 22) // "on_tvCustomers_clicked"
+QT_MOC_LITERAL(15, 317, 22) // "on_tvCustomers_pressed"
 
     },
     "CustomerSearch\0CreationCompleted\0\0"
@@ -59,7 +58,7 @@ QT_MOC_LITERAL(16, 340, 22) // "on_tvCustomers_clicked"
     "on_tvCustomers_doubleClicked\0index\0"
     "on_chbxNoCustomer_clicked\0"
     "on_pbtnCreateTask_clicked\0"
-    "on_tvCustomers_pressed\0on_tvCustomers_clicked"
+    "on_tvCustomers_pressed"
 };
 #undef QT_MOC_LITERAL
 
@@ -69,7 +68,7 @@ static const uint qt_meta_data_CustomerSearch[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-      13,   14, // methods
+      12,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -77,21 +76,20 @@ static const uint qt_meta_data_CustomerSearch[] = {
        1,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    0,   79,    2, 0x06 /* Public */,
+       1,    0,   74,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       3,    1,   80,    2, 0x08 /* Private */,
-       5,    1,   83,    2, 0x08 /* Private */,
-       6,    1,   86,    2, 0x08 /* Private */,
-       7,    1,   89,    2, 0x08 /* Private */,
-       8,    1,   92,    2, 0x08 /* Private */,
-       9,    1,   95,    2, 0x08 /* Private */,
-      10,    1,   98,    2, 0x08 /* Private */,
-      11,    1,  101,    2, 0x08 /* Private */,
-      13,    0,  104,    2, 0x08 /* Private */,
-      14,    0,  105,    2, 0x08 /* Private */,
-      15,    1,  106,    2, 0x08 /* Private */,
-      16,    1,  109,    2, 0x08 /* Private */,
+       3,    1,   75,    2, 0x08 /* Private */,
+       5,    1,   78,    2, 0x08 /* Private */,
+       6,    1,   81,    2, 0x08 /* Private */,
+       7,    1,   84,    2, 0x08 /* Private */,
+       8,    1,   87,    2, 0x08 /* Private */,
+       9,    1,   90,    2, 0x08 /* Private */,
+      10,    1,   93,    2, 0x08 /* Private */,
+      11,    1,   96,    2, 0x08 /* Private */,
+      13,    0,   99,    2, 0x08 /* Private */,
+      14,    0,  100,    2, 0x08 /* Private */,
+      15,    1,  101,    2, 0x08 /* Private */,
 
  // signals: parameters
     QMetaType::Void,
@@ -107,7 +105,6 @@ static const uint qt_meta_data_CustomerSearch[] = {
     QMetaType::Void, QMetaType::QModelIndex,   12,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::QModelIndex,   12,
     QMetaType::Void, QMetaType::QModelIndex,   12,
 
        0        // eod
@@ -130,7 +127,6 @@ void CustomerSearch::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _
         case 9: _t->on_chbxNoCustomer_clicked(); break;
         case 10: _t->on_pbtnCreateTask_clicked(); break;
         case 11: _t->on_tvCustomers_pressed((*reinterpret_cast< const QModelIndex(*)>(_a[1]))); break;
-        case 12: _t->on_tvCustomers_clicked((*reinterpret_cast< const QModelIndex(*)>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -170,13 +166,13 @@ int CustomerSearch::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 13)
+        if (_id < 12)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 13;
+        _id -= 12;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 13)
+        if (_id < 12)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 13;
+        _id -= 12;
     }
     return _id;
 }

@@ -17,11 +17,12 @@
 #include <QtWidgets/QDateTimeEdit>
 #include <QtWidgets/QFormLayout>
 #include <QtWidgets/QGroupBox>
+#include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
-#include <QtWidgets/QSpacerItem>
+#include <QtWidgets/QScrollArea>
 #include <QtWidgets/QTextEdit>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
@@ -52,12 +53,13 @@ public:
     QGroupBox *gbxProblems;
     QVBoxLayout *verticalLayout;
     QPushButton *pbtnAddProblem;
+    QScrollArea *scrollArea;
+    QWidget *scrollAreaWidgetContents_2;
+    QHBoxLayout *horizontalLayout;
     QVBoxLayout *vblProblems;
-    QSpacerItem *verticalSpacer;
     QVBoxLayout *verticalLayout_3;
     QLabel *lblComment;
     QTextEdit *txtComment;
-    QSpacerItem *verticalSpacer_2;
     QVBoxLayout *verticalLayout_2;
     QPushButton *pbtnCreate;
     QPushButton *pbtnCancel;
@@ -66,7 +68,7 @@ public:
     {
         if (Task->objectName().isEmpty())
             Task->setObjectName(QStringLiteral("Task"));
-        Task->resize(410, 507);
+        Task->resize(410, 644);
         verticalLayout_4 = new QVBoxLayout(Task);
         verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
         gbxAddress = new QGroupBox(Task);
@@ -168,17 +170,26 @@ public:
 
         verticalLayout->addWidget(pbtnAddProblem);
 
+        scrollArea = new QScrollArea(gbxProblems);
+        scrollArea->setObjectName(QStringLiteral("scrollArea"));
+        scrollArea->setMinimumSize(QSize(0, 200));
+        scrollArea->setWidgetResizable(true);
+        scrollAreaWidgetContents_2 = new QWidget();
+        scrollAreaWidgetContents_2->setObjectName(QStringLiteral("scrollAreaWidgetContents_2"));
+        scrollAreaWidgetContents_2->setGeometry(QRect(0, 0, 370, 198));
+        horizontalLayout = new QHBoxLayout(scrollAreaWidgetContents_2);
+        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         vblProblems = new QVBoxLayout();
         vblProblems->setObjectName(QStringLiteral("vblProblems"));
 
-        verticalLayout->addLayout(vblProblems);
+        horizontalLayout->addLayout(vblProblems);
+
+        scrollArea->setWidget(scrollAreaWidgetContents_2);
+
+        verticalLayout->addWidget(scrollArea);
 
 
         verticalLayout_4->addWidget(gbxProblems);
-
-        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
-
-        verticalLayout_4->addItem(verticalSpacer);
 
         verticalLayout_3 = new QVBoxLayout();
         verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
@@ -194,10 +205,6 @@ public:
 
 
         verticalLayout_4->addLayout(verticalLayout_3);
-
-        verticalSpacer_2 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
-
-        verticalLayout_4->addItem(verticalSpacer_2);
 
         verticalLayout_2 = new QVBoxLayout();
         verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));

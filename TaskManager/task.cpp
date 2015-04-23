@@ -170,8 +170,19 @@ void Task::createTask(int index)
 void Task::updateTask(int index)
 {
     QString strCompleted;
-    if(mProblemsList[index]->getResultID() == "3"){strCompleted = "1";}
-    else {strCompleted = "0";}
+
+    for(int i = 0; i<mProblemsList.count();++i)
+    {
+        if(mProblemsList[i]->getResultID() != "3")
+        {
+            strCompleted = "0";
+            break;
+        }
+        else
+        {
+            strCompleted = "1";
+        }
+    }
     QString command = "UPDATE tasks"
                       " SET result = "+mProblemsList[index]->getResultID()+
                       ", completed = "+strCompleted+
