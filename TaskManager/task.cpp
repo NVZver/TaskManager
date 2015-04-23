@@ -175,7 +175,7 @@ void Task::updateTask(int index)
     QString command = "UPDATE tasks"
                       " SET result = "+mProblemsList[index]->getResultID()+
                       ", completed = "+strCompleted+
-                      ", comment = "+ui->txtComment->toPlainText()+
+                      ", comment = '"+ui->txtComment->toPlainText()+"'"
                       " WHERE idtask = "+mProblemsList[index]->getTaskID();
     mConnToDB->enterCommand(command);
 }

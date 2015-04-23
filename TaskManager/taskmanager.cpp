@@ -60,6 +60,8 @@ void TaskManager::refreshData()
                           "order by tasks.date_completion";
     mConnToDB->enterCommand(selectTasks);
     ui->tvTasks->setModel(mConnToDB->getQueryModel());
+    ui->tvTasks->resizeColumnsToContents();
+    ui->tvTasks->resizeRowsToContents();
 
     QString selectMissedCalls = "select "
             "missed_calls.end_call as 'Время',"
@@ -82,6 +84,8 @@ void TaskManager::refreshData()
 
     mConnToDB->enterCommand(selectMissedCalls);
     ui->tvMissedCalls->setModel(mConnToDB->getQueryModel());
+    ui->tvMissedCalls->resizeColumnsToContents();
+    ui->tvMissedCalls->resizeRowsToContents();
 }
 
 void TaskManager::on_pbtnDayBack_clicked()

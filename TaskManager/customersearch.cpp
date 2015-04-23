@@ -122,6 +122,8 @@ void CustomerSearch::updateSearchData(QString condition)
             "where "+condition;
     mConnToDB->enterCommand(command);
     ui->tvCustomers->setModel(mConnToDB->getQueryModel());
+    ui->tvCustomers->resizeColumnsToContents();
+    ui->tvCustomers->resizeRowsToContents();
 
 }
 
@@ -174,12 +176,11 @@ void CustomerSearch::on_pbtnCreateTask_clicked()
     {
         openNewTask(ui->tvCustomers->model()->data(ui->tvCustomers->model()->index(activeRow,0),Qt::DisplayRole).toString());
     }
-
 }
 
 void CustomerSearch::on_tvCustomers_pressed(const QModelIndex &index)
 {
-    ui->tvCustomers->selectRow(index.row());
+
     activeRow = index.row();
     ui->pbtnCreateTask->setEnabled(true);
 }
