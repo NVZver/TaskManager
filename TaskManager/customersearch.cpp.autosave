@@ -148,8 +148,6 @@ void CustomerSearch::on_tvCustomers_doubleClicked(const QModelIndex &index)
     openNewTask(ui->tvCustomers->model()->data(ui->tvCustomers->model()->index(index.row(),0),Qt::DisplayRole).toString());
 }
 
-
-
 void CustomerSearch::on_chbxNoCustomer_clicked()
 {
     if(ui->chbxNoCustomer->isChecked())

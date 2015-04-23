@@ -76,7 +76,7 @@ void Task::updateTaskData(QString contractNumber, QDate searchDate)
 {
     mProblemsList.clear();
     ui->dteDeadline->setDate(searchDate);
-    QString command = "select tasks.idtask, problems.name, task_results.result_name "
+    QString command = "select tasks.idtask, problems.name, task_results.result_name , tasks.comment "
                       "from tasks "
                       "inner join problems on problems.idproblem = tasks.problem "
                       "inner join task_results on task_results.idtask_result = tasks.result "
@@ -89,7 +89,9 @@ void Task::updateTaskData(QString contractNumber, QDate searchDate)
         mProblemsList[i]->setStrProblemValue(mConnToDB->getQueryModel()->data(mConnToDB->getQueryModel()->index(i,1)).toString());
         mProblemsList[i]->setStrResultValue(mConnToDB->getQueryModel()->data(mConnToDB->getQueryModel()->index(i,2)).toString());
         mProblemsList[i]->setIsNew(false);
+        ui->txtComment->setText(mConnToDB->getQueryModel()->data(mConnToDB->getQueryModel()->index(i,3)).toString());
     }
+
 }
 
 /// Создание проблемы и добавление ее на форму
@@ -143,7 +145,8 @@ void Task::createTask(int index)
                      << "date_completion"
                      << "completed"
                      << "result"
-                     << "contract_number";
+                     << "contract_number"
+                     << "comment";
     valuesList<<QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss");
     valuesList<<ui->lntLocality->text();
     valuesList<<ui->lntStreet->text();
@@ -156,6 +159,7 @@ void Task::createTask(int index)
     else {valuesList<<"1";}
     valuesList<<mProblemsList[index]->getResultID();
     valuesList<<ui->lntContractNumber->text();
+    valuesList<<ui->txtComment->toPlainText();
     mConnToDB->insertData("tasks", columnsNamesList, valuesList);
 }
 
@@ -171,25 +175,34 @@ void Task::updateTask(int index)
     QString command = "UPDATE tasks"
                       " SET result = "+mProblemsList[index]->getResultID()+
                       ", completed = "+strCompleted+
+                      ", comment = "+ui->txtComment->toPlainText()+
                       " WHERE idtask = "+mProblemsList[index]->getTaskID();
     mConnToDB->enterCommand(command);
 }
 
 void Task::on_pbtnCreate_clicked()
 {
-    for(int i = 0; i < mProblemsList.count(); ++i)
+    if(ui->txtComment->toPlainText() != "")
     {
-        if(mProblemsList[i]->getIsNew())
+        for(int i = 0; i < mProblemsList.count(); ++i)
         {
-            createTask(i);
+            if(mProblemsList[i]->getIsNew())
+            {
+                createTask(i);
+            }
+            else
+            {
+                updateTask(i);
+            }
         }
-        else
-        {
-            updateTask(i);
-        }
+        CreationCompleted();
+        this->close();
     }
-    CreationCompleted();
-    this->close();
+    else
+    {
+        ui->txtComment->setStyleSheet("border: 3px solid red;");
+    }
+
 }
 
 void Task::on_pbtnCancel_clicked()

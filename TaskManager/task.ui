@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>Задача</string>
   </property>
   <widget class="QPushButton" name="pbtnCreate">
    <property name="geometry">
@@ -29,9 +29,9 @@
   <widget class="QTextEdit" name="txtComment">
    <property name="geometry">
     <rect>
-     <x>270</x>
+     <x>260</x>
      <y>270</y>
-     <width>401</width>
+     <width>411</width>
      <height>111</height>
     </rect>
    </property>

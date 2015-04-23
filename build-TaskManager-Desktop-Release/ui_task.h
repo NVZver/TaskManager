@@ -65,7 +65,7 @@ public:
         pbtnCreate->setGeometry(QRect(10, 320, 201, 31));
         txtComment = new QTextEdit(Task);
         txtComment->setObjectName(QStringLiteral("txtComment"));
-        txtComment->setGeometry(QRect(270, 270, 401, 111));
+        txtComment->setGeometry(QRect(260, 270, 411, 111));
         gbxAddress = new QGroupBox(Task);
         gbxAddress->setObjectName(QStringLiteral("gbxAddress"));
         gbxAddress->setGeometry(QRect(0, 10, 251, 261));
@@ -169,7 +169,7 @@ public:
 
     void retranslateUi(QWidget *Task)
     {
-        Task->setWindowTitle(QApplication::translate("Task", "Form", 0));
+        Task->setWindowTitle(QApplication::translate("Task", "\320\227\320\260\320\264\320\260\321\207\320\260", 0));
         pbtnCreate->setText(QApplication::translate("Task", "OK", 0));
         gbxAddress->setTitle(QApplication::translate("Task", "\320\240\320\265\320\272\320\262\320\270\320\267\320\270\321\202\321\213 \320\272\320\273\320\270\320\265\320\275\321\202\320\260", 0));
         lblLocality->setText(QApplication::translate("Task", "\320\275\320\260\321\201. \320\277\321\203\320\275\320\272\321\202", 0));

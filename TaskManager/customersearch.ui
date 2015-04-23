@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>Поиск клиента</string>
   </property>
   <widget class="QTableView" name="tvCustomers">
    <property name="geometry">
@@ -34,7 +34,7 @@
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
-     <widget class="QCheckBox" name="cbxNoCustomer">
+     <widget class="QCheckBox" name="chbxNoCustomer">
       <property name="text">
        <string>Не клиент</string>
       </property>
@@ -68,7 +68,7 @@
     <attribute name="title">
      <string>Договор</string>
     </attribute>
-    <widget class="QWidget" name="">
+    <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -115,7 +115,7 @@
     <attribute name="title">
      <string>Адрес</string>
     </attribute>
-    <widget class="QWidget" name="">
+    <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -183,29 +183,6 @@
       </item>
      </layout>
     </widget>
-    <zorder>label_4</zorder>
-    <zorder>lntLocality</zorder>
-    <zorder>label_3</zorder>
-    <zorder>label_2</zorder>
-    <zorder>lntHouse</zorder>
-    <zorder>lblLocality</zorder>
-    <zorder>lntStreet</zorder>
-    <zorder>lntApartment</zorder>
-    <zorder>lntLocality</zorder>
-    <zorder>label_3</zorder>
-    <zorder>label_4</zorder>
-    <zorder>label_2</zorder>
-    <zorder>lntHouse</zorder>
-    <zorder>lblLocality</zorder>
-    <zorder>lntStreet</zorder>
-    <zorder>lntApartment</zorder>
-    <zorder>lntLocality</zorder>
-    <zorder>label_3</zorder>
-    <zorder>label_4</zorder>
-    <zorder>label_2</zorder>
-    <zorder>lntHouse</zorder>
-    <zorder>lblLocality</zorder>
-    <zorder>lntStreet</zorder>
    </widget>
   </widget>
  </widget>

@@ -39,11 +39,18 @@ private slots:
 
     void on_tvCustomers_doubleClicked(const QModelIndex &index);
 
+
+
+    void on_chbxNoCustomer_clicked();
+
+    void on_pbtnCreateTask_clicked();
+
 private:
     ConnectToDataBase* mConnToDB;
     Ui::CustomerSearch *ui;
 
     void updateSearchData(QString condition);
+    void openNewTask(QString contractNumber);
 };
 
 #endif // CUSTOMERSEARCH_H

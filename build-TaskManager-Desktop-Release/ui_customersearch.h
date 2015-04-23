@@ -32,11 +32,11 @@ public:
     QTableView *tvCustomers;
     QWidget *layoutWidget;
     QHBoxLayout *horizontalLayout;
-    QCheckBox *cbxNoCustomer;
+    QCheckBox *chbxNoCustomer;
     QPushButton *pbtnCreateTask;
     QTabWidget *tabWidget;
     QWidget *tabSearchByContract;
-    QWidget *widget;
+    QWidget *layoutWidget1;
     QVBoxLayout *verticalLayout_6;
     QLabel *lblContractNumber;
     QLineEdit *lntContractNumber;
@@ -45,7 +45,7 @@ public:
     QLabel *lblLastName;
     QLineEdit *lntLName;
     QWidget *tabSearchByAddress;
-    QWidget *widget1;
+    QWidget *layoutWidget2;
     QVBoxLayout *verticalLayout_5;
     QVBoxLayout *verticalLayout_2;
     QLabel *lblLocality;
@@ -74,10 +74,10 @@ public:
         horizontalLayout = new QHBoxLayout(layoutWidget);
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         horizontalLayout->setContentsMargins(0, 0, 0, 0);
-        cbxNoCustomer = new QCheckBox(layoutWidget);
-        cbxNoCustomer->setObjectName(QStringLiteral("cbxNoCustomer"));
+        chbxNoCustomer = new QCheckBox(layoutWidget);
+        chbxNoCustomer->setObjectName(QStringLiteral("chbxNoCustomer"));
 
-        horizontalLayout->addWidget(cbxNoCustomer);
+        horizontalLayout->addWidget(chbxNoCustomer);
 
         pbtnCreateTask = new QPushButton(layoutWidget);
         pbtnCreateTask->setObjectName(QStringLiteral("pbtnCreateTask"));
@@ -90,38 +90,38 @@ public:
         tabWidget->setGeometry(QRect(10, 50, 331, 191));
         tabSearchByContract = new QWidget();
         tabSearchByContract->setObjectName(QStringLiteral("tabSearchByContract"));
-        widget = new QWidget(tabSearchByContract);
-        widget->setObjectName(QStringLiteral("widget"));
-        widget->setGeometry(QRect(10, 12, 311, 131));
-        verticalLayout_6 = new QVBoxLayout(widget);
+        layoutWidget1 = new QWidget(tabSearchByContract);
+        layoutWidget1->setObjectName(QStringLiteral("layoutWidget1"));
+        layoutWidget1->setGeometry(QRect(10, 12, 311, 131));
+        verticalLayout_6 = new QVBoxLayout(layoutWidget1);
         verticalLayout_6->setObjectName(QStringLiteral("verticalLayout_6"));
         verticalLayout_6->setContentsMargins(0, 0, 0, 0);
-        lblContractNumber = new QLabel(widget);
+        lblContractNumber = new QLabel(layoutWidget1);
         lblContractNumber->setObjectName(QStringLiteral("lblContractNumber"));
 
         verticalLayout_6->addWidget(lblContractNumber);
 
-        lntContractNumber = new QLineEdit(widget);
+        lntContractNumber = new QLineEdit(layoutWidget1);
         lntContractNumber->setObjectName(QStringLiteral("lntContractNumber"));
 
         verticalLayout_6->addWidget(lntContractNumber);
 
-        lblPhoneNumber = new QLabel(widget);
+        lblPhoneNumber = new QLabel(layoutWidget1);
         lblPhoneNumber->setObjectName(QStringLiteral("lblPhoneNumber"));
 
         verticalLayout_6->addWidget(lblPhoneNumber);
 
-        lntPhoneNumber = new QLineEdit(widget);
+        lntPhoneNumber = new QLineEdit(layoutWidget1);
         lntPhoneNumber->setObjectName(QStringLiteral("lntPhoneNumber"));
 
         verticalLayout_6->addWidget(lntPhoneNumber);
 
-        lblLastName = new QLabel(widget);
+        lblLastName = new QLabel(layoutWidget1);
         lblLastName->setObjectName(QStringLiteral("lblLastName"));
 
         verticalLayout_6->addWidget(lblLastName);
 
-        lntLName = new QLineEdit(widget);
+        lntLName = new QLineEdit(layoutWidget1);
         lntLName->setObjectName(QStringLiteral("lntLName"));
 
         verticalLayout_6->addWidget(lntLName);
@@ -129,30 +129,30 @@ public:
         tabWidget->addTab(tabSearchByContract, QString());
         tabSearchByAddress = new QWidget();
         tabSearchByAddress->setObjectName(QStringLiteral("tabSearchByAddress"));
-        widget1 = new QWidget(tabSearchByAddress);
-        widget1->setObjectName(QStringLiteral("widget1"));
-        widget1->setGeometry(QRect(10, 21, 311, 137));
-        verticalLayout_5 = new QVBoxLayout(widget1);
+        layoutWidget2 = new QWidget(tabSearchByAddress);
+        layoutWidget2->setObjectName(QStringLiteral("layoutWidget2"));
+        layoutWidget2->setGeometry(QRect(10, 21, 311, 137));
+        verticalLayout_5 = new QVBoxLayout(layoutWidget2);
         verticalLayout_5->setObjectName(QStringLiteral("verticalLayout_5"));
         verticalLayout_5->setContentsMargins(0, 0, 0, 0);
         verticalLayout_2 = new QVBoxLayout();
         verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
-        lblLocality = new QLabel(widget1);
+        lblLocality = new QLabel(layoutWidget2);
         lblLocality->setObjectName(QStringLiteral("lblLocality"));
 
         verticalLayout_2->addWidget(lblLocality);
 
-        lntLocality = new QLineEdit(widget1);
+        lntLocality = new QLineEdit(layoutWidget2);
         lntLocality->setObjectName(QStringLiteral("lntLocality"));
 
         verticalLayout_2->addWidget(lntLocality);
 
-        label_2 = new QLabel(widget1);
+        label_2 = new QLabel(layoutWidget2);
         label_2->setObjectName(QStringLiteral("label_2"));
 
         verticalLayout_2->addWidget(label_2);
 
-        lntStreet = new QLineEdit(widget1);
+        lntStreet = new QLineEdit(layoutWidget2);
         lntStreet->setObjectName(QStringLiteral("lntStreet"));
 
         verticalLayout_2->addWidget(lntStreet);
@@ -164,12 +164,12 @@ public:
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
         verticalLayout_3 = new QVBoxLayout();
         verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
-        label_3 = new QLabel(widget1);
+        label_3 = new QLabel(layoutWidget2);
         label_3->setObjectName(QStringLiteral("label_3"));
 
         verticalLayout_3->addWidget(label_3);
 
-        lntHouse = new QLineEdit(widget1);
+        lntHouse = new QLineEdit(layoutWidget2);
         lntHouse->setObjectName(QStringLiteral("lntHouse"));
 
         verticalLayout_3->addWidget(lntHouse);
@@ -179,12 +179,12 @@ public:
 
         verticalLayout_4 = new QVBoxLayout();
         verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
-        label_4 = new QLabel(widget1);
+        label_4 = new QLabel(layoutWidget2);
         label_4->setObjectName(QStringLiteral("label_4"));
 
         verticalLayout_4->addWidget(label_4);
 
-        lntApartment = new QLineEdit(widget1);
+        lntApartment = new QLineEdit(layoutWidget2);
         lntApartment->setObjectName(QStringLiteral("lntApartment"));
 
         verticalLayout_4->addWidget(lntApartment);
@@ -196,29 +196,6 @@ public:
         verticalLayout_5->addLayout(horizontalLayout_2);
 
         tabWidget->addTab(tabSearchByAddress, QString());
-        label_4->raise();
-        lntLocality->raise();
-        label_3->raise();
-        label_2->raise();
-        lntHouse->raise();
-        lblLocality->raise();
-        lntStreet->raise();
-        lntApartment->raise();
-        lntLocality->raise();
-        label_3->raise();
-        label_4->raise();
-        label_2->raise();
-        lntHouse->raise();
-        lblLocality->raise();
-        lntStreet->raise();
-        lntApartment->raise();
-        lntLocality->raise();
-        label_3->raise();
-        label_4->raise();
-        label_2->raise();
-        lntHouse->raise();
-        lblLocality->raise();
-        lntStreet->raise();
 
         retranslateUi(CustomerSearch);
 
@@ -230,8 +207,8 @@ public:
 
     void retranslateUi(QWidget *CustomerSearch)
     {
-        CustomerSearch->setWindowTitle(QApplication::translate("CustomerSearch", "Form", 0));
-        cbxNoCustomer->setText(QApplication::translate("CustomerSearch", "\320\235\320\265 \320\272\320\273\320\270\320\265\320\275\321\202", 0));
+        CustomerSearch->setWindowTitle(QApplication::translate("CustomerSearch", "\320\237\320\276\320\270\321\201\320\272 \320\272\320\273\320\270\320\265\320\275\321\202\320\260", 0));
+        chbxNoCustomer->setText(QApplication::translate("CustomerSearch", "\320\235\320\265 \320\272\320\273\320\270\320\265\320\275\321\202", 0));
         pbtnCreateTask->setText(QApplication::translate("CustomerSearch", "\320\241\320\276\320\267\320\264\320\260\321\202\321\214 \320\267\320\260\320\264\320\260\321\207\321\203", 0));
         lblContractNumber->setText(QApplication::translate("CustomerSearch", "\342\204\226 \320\264\320\276\320\263\320\276\320\262\320\276\321\200\320\260", 0));
         lblPhoneNumber->setText(QApplication::translate("CustomerSearch", "\320\242\320\265\320\273\320\265\321\204\320\276\320\275", 0));
