@@ -10,12 +10,10 @@ Problem::Problem(int id, QList<QString>problemList, QList<QString>resultList, QW
     cbxResults = new QComboBox();
     cbxResults->addItems(resultList);
     pbtnRemove = new QPushButton("-");
-
     HBLayout->addWidget(cbxProblems);
     HBLayout->addWidget(cbxResults);
     HBLayout->addWidget(pbtnRemove);
     this->setLayout(HBLayout);
-
     connect(pbtnRemove, SIGNAL(clicked()), SLOT(slotRemoveButtonClicked()));
 }
 
@@ -123,12 +121,6 @@ QString Problem::getResultID()
 {
     return getResultsID()[cbxResults->currentIndex()];
 }
-
-
-
-
-
-
 
 void Problem::slotRemoveButtonClicked()
 {

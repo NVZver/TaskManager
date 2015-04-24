@@ -47,6 +47,8 @@ private slots:
 
     void on_tvCustomers_pressed(const QModelIndex &index);
 
+
+
 private:
     ConnectToDataBase* mConnToDB;
     Ui::CustomerSearch *ui;

@@ -180,7 +180,7 @@ void CustomerSearch::on_pbtnCreateTask_clicked()
 
 void CustomerSearch::on_tvCustomers_pressed(const QModelIndex &index)
 {
-
     activeRow = index.row();
     ui->pbtnCreateTask->setEnabled(true);
+    ui->tvCustomers->selectRow(index.row());
 }

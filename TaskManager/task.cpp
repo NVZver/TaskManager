@@ -12,7 +12,6 @@ Task::Task(ConnectToDataBase *connToDB, QString contractNumber, QDate dateComple
     fillingDetails(contractNumber);
     updateProblemsData();
     updateTaskData(contractNumber, dateCompletion);
-
 }
 
 Task::~Task()
@@ -41,7 +40,6 @@ void Task::fillingDetails(QString contractNumber)
     ui->lntStreet->setText(mConnToDB->getQueryModel()->data(mConnToDB->getQueryModel()->index(0,2),Qt::DisplayRole).toString());
     ui->lntHouse->setText(mConnToDB->getQueryModel()->data(mConnToDB->getQueryModel()->index(0,3),Qt::DisplayRole).toString());
     ui->lntApartment->setText(mConnToDB->getQueryModel()->data(mConnToDB->getQueryModel()->index(0,4),Qt::DisplayRole).toString());
-
 }
 
 /// Заполняет списки наименований проблем и результатов
@@ -91,7 +89,6 @@ void Task::updateTaskData(QString contractNumber, QDate searchDate)
         mProblemsList[i]->setIsNew(false);
         ui->txtComment->setText(mConnToDB->getQueryModel()->data(mConnToDB->getQueryModel()->index(i,3)).toString());
     }
-
 }
 
 /// Создание проблемы и добавление ее на форму
@@ -230,7 +227,6 @@ void Task::slotRemoveProblem(int id)
 {
     removeProblem(id);
 }
-
 
 ConnectToDataBase *Task::connToDB() const
 {
