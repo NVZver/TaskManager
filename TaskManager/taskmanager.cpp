@@ -57,7 +57,8 @@ void TaskManager::refreshData()
                           "inner join problems on problems.idproblem = tasks.problem"
                           " where tasks.date_completion like"+strSearchDate+
                           "group by tasks.locality, tasks.street,tasks.house,tasks.apartment "
-                          "order by tasks.date_completion";
+                          "order by tasks.date_completion "
+                          "and tasks.completed";
 
     mConnToDB->enterCommand(selectTasks);
     QBrush rowColor;
