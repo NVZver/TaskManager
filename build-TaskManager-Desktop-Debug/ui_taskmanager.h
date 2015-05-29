@@ -31,7 +31,7 @@ public:
     QVBoxLayout *verticalLayout;
     QTabWidget *tabwgt;
     QWidget *tabTasks;
-    QVBoxLayout *verticalLayout_2;
+    QHBoxLayout *horizontalLayout_2;
     QTableView *tvTasks;
     QWidget *tabMissedCalls;
     QVBoxLayout *verticalLayout_3;
@@ -57,14 +57,14 @@ public:
         tabwgt->setObjectName(QStringLiteral("tabwgt"));
         tabTasks = new QWidget();
         tabTasks->setObjectName(QStringLiteral("tabTasks"));
-        verticalLayout_2 = new QVBoxLayout(tabTasks);
-        verticalLayout_2->setSpacing(6);
-        verticalLayout_2->setContentsMargins(11, 11, 11, 11);
-        verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
+        horizontalLayout_2 = new QHBoxLayout(tabTasks);
+        horizontalLayout_2->setSpacing(6);
+        horizontalLayout_2->setContentsMargins(11, 11, 11, 11);
+        horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
         tvTasks = new QTableView(tabTasks);
         tvTasks->setObjectName(QStringLiteral("tvTasks"));
 
-        verticalLayout_2->addWidget(tvTasks);
+        horizontalLayout_2->addWidget(tvTasks);
 
         tabwgt->addTab(tabTasks, QString());
         tabMissedCalls = new QWidget();

@@ -62,17 +62,20 @@ void TaskManager::refreshData()
 
     mConnToDB->enterCommand(selectTasks);
     QBrush rowColor;
+
+    ui->tvTasks->setModel(mConnToDB->getQueryModel());
+
     for(int i =0; i<mConnToDB->getQueryModel()->rowCount(); ++i)
     {
-        if(mConnToDB->getQueryModel()->data(mConnToDB->getQueryModel()->index(i,2)).toString() == "1")
+        if(ui->tvTasks->model()->data(mConnToDB->getQueryModel()->index(i,2)).toString() == "1")
         {
             rowColor.setColor(Qt::gray);
-            mConnToDB->getQueryModel()->setData(mConnToDB->getQueryModel()->index(i,2), rowColor, Qt::BackgroundColorRole);
-            qDebug()<<mConnToDB->getQueryModel()->data(mConnToDB->getQueryModel()->index(i,2),Qt::BackgroundColorRole);
+            ui->tvTasks->model()->setData(mConnToDB->getQueryModel()->index(i,2), rowColor, Qt::BackgroundRole);
+            qDebug()<<ui->tvTasks->model()->data(mConnToDB->getQueryModel()->index(i,2),Qt::BackgroundRole);
 
         }
     }
-    ui->tvTasks->setModel(mConnToDB->getQueryModel());
+
     ui->tvTasks->resizeColumnsToContents();
     ui->tvTasks->resizeRowsToContents();
 
@@ -145,5 +148,6 @@ void TaskManager::slotCreationCompleted()
 
 void TaskManager::on_tvTasks_pressed(const QModelIndex &index)
 {
-    ui->tvTasks->selectRow(index.row());
+    //ui->tvTasks->selectRow(index.row());
+    //ui->tvTasks->setStyleSheet("selection-background-color: #FF92BB");
 }
