@@ -101,7 +101,7 @@ void ConnectToDataBase::connectingToDB()
 {
     db = QSqlDatabase::addDatabase("QMYSQL", "mydb");
     db.setHostName("localhost");
-    db.setDatabaseName("linkod_db");
+    db.setDatabaseName("linkoddb");
     db.setUserName("root");
     db.setPassword("qwertyu1");
     if(db.open()){qDebug()<<"Подлючено...";}

@@ -39,6 +39,20 @@
        </item>
       </layout>
      </widget>
+     <widget class="QWidget" name="tabTimeTable">
+      <attribute name="title">
+       <string>Расписание</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_5">
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_4">
+         <item>
+          <widget class="QTableView" name="tvTimeTable"/>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
     </widget>
    </item>
    <item>

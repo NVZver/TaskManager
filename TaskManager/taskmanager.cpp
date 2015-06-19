@@ -102,6 +102,22 @@ void TaskManager::refreshData()
     ui->tvMissedCalls->setModel(mConnToDB->getQueryModel());
     ui->tvMissedCalls->resizeColumnsToContents();
     ui->tvMissedCalls->resizeRowsToContents();
+
+
+    QString selectTimeTable = "select "
+            "localities.name as 'Нас. Пункт',"
+            "performers.full_name as 'Исполнитель',"
+            "weekdays.name as 'День недели' "
+            "from "
+            "timetable "
+            "inner join localities on localities.idLocalities = timetable.locality "
+            "inner join performers on performers.idPerformers = timetable.performer "
+            "inner join weekdays on weekdays.idweekday = timetable.weekday "
+            "order by timetable.weekday";
+    mConnToDB->enterCommand(selectTimeTable);
+    ui->tvTimeTable->setModel(mConnToDB->getQueryModel());
+    ui->tvTimeTable->resizeColumnsToContents();
+    ui->tvTimeTable->resizeRowsToContents();
 }
 
 void TaskManager::on_pbtnDayBack_clicked()
@@ -150,4 +166,9 @@ void TaskManager::on_tvTasks_pressed(const QModelIndex &index)
 {
     //ui->tvTasks->selectRow(index.row());
     //ui->tvTasks->setStyleSheet("selection-background-color: #FF92BB");
+}
+
+void TaskManager::on_tvTimeTable_clicked(const QModelIndex &index)
+{
+
 }

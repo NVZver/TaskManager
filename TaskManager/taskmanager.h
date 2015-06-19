@@ -2,6 +2,7 @@
 #define TASKMANAGER_H
 
 #include <QWidget>
+
 namespace Ui {
 class TaskManager;
 }
@@ -42,6 +43,8 @@ private slots:
     void slotCreationCompleted();
 
     void on_tvTasks_pressed(const QModelIndex &index);
+
+    void on_tvTimeTable_clicked(const QModelIndex &index);
 
 private:
     Ui::TaskManager *ui;
