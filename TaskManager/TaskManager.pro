@@ -18,16 +18,14 @@ SOURCES += main.cpp\
     customersearch.cpp \
     task.cpp \
     connecttodatabase.cpp \
-    problem.cpp \
-    comboboxdelegate.cpp
+    problem.cpp
 
 HEADERS  += taskmanager.h \
     authentication.h \
     customersearch.h \
     task.h \
     connecttodatabase.h \
-    problem.h \
-    comboboxdelegate.h
+    problem.h
 
 FORMS    += taskmanager.ui \
     authentication.ui \
