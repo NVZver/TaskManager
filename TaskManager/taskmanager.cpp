@@ -137,6 +137,11 @@ void TaskManager::refreshData()
     updateTimeTable();
 }
 
+void TaskManager::contextMenuEvent(QContextMenuEvent *event)
+{
+
+}
+
 void TaskManager::on_pbtnDayBack_clicked()
 {
     QDate dte = ui->dteSearch->date();
@@ -192,11 +197,7 @@ void TaskManager::on_tvTimeTable_clicked(const QModelIndex &index)
 
 void TaskManager::slotTimeTableDataChanged(QModelIndex topLeft, QModelIndex bottomRight)
 {
-    qDebug()<<"==============================================================";
-    qDebug()<<"TOP_LEFT_ROW: "<<topLeft.row()<<" _COLUMN: "<<topLeft.column();
-    //qDebug()<<mConnToDB->getRelationalTableModel()->data(topLeft).toString();
-    qDebug()<<mConnToDB->getRelationalTableModel()->query().value(0).toString();
-    //qDebug()<<"BOTTOM_RIGHT_ROW: "<<bottomRight.row()<<" _COLUMN"<<bottomRight.column();
-    qDebug()<<"==============================================================";
+    qDebug()<<"SUBMIT_ALL";
     mConnToDB->getRelationalTableModel()->submitAll();
 }
+

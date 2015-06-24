@@ -33,6 +33,7 @@ private:
     /// \brief refresh
     /// Обновляет данные о задачах и пропущенных звонках
     void refreshData();
+    void conte
 
 private slots:
     void on_pbtnDayBack_clicked();
