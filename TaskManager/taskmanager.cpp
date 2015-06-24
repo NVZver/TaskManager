@@ -19,6 +19,9 @@ TaskManager::TaskManager(QWidget *parent) :
     ui->dteSearch->setDate(QDate::currentDate());
     ui->dteSearch->setCalendarPopup(true);
     refreshData();
+
+
+
 }
 
 TaskManager::~TaskManager()
@@ -37,7 +40,83 @@ void TaskManager::setConnToDB(ConnectToDataBase *connToDB)
     mConnToDB = connToDB;
 }
 
-void TaskManager::refreshData()
+void TaskManager::updateTimeTable()
+{
+//    QString command = "select performers.idPerformers, performers.full_name from performers";
+//    mConnToDB->enterCommand(command);
+//    QList<QString> idList;
+//    QList<QString> itemsList;
+//    while(mConnToDB->getQueryModel()->query().next())
+//    {
+//        idList<<mConnToDB->getQueryModel()->query().value(0).toString();
+//        itemsList<<mConnToDB->getQueryModel()->query().value(1).toString();
+//    }
+//    cbxDelegate = new ComboBoxDelegate(idList,itemsList,this);
+
+//    command.clear();
+//    command = "select "
+//            "localities.name as 'Нас. Пункт',"
+//            "performers.full_name as 'Исполнитель',"
+//            "weekdays.name as 'День недели' "
+//            "from "
+//            "timetable "
+//            "inner join localities on localities.idLocalities = timetable.locality "
+//            "inner join performers on performers.idPerformers = timetable.performer "
+//            "inner join weekdays on weekdays.idweekday = timetable.weekday "
+//            "order by timetable.weekday";
+//    mConnToDB->enterCommand(command);
+//    ui->tvTimeTable->setModel(mConnToDB->getQueryModel());
+//    ui->tvTimeTable->setItemDelegateForColumn(1, cbxDelegate);
+//    ui->tvTimeTable->resizeColumnsToContents();
+//    ui->tvTimeTable->resizeRowsToContents();
+
+    mConnToDB->getRelationalTableModel()->setTable("timetable");
+//    connect(mConnToDB->getRelationalTableModel(), SIGNAL(dataChanged(QModelIndex,QModelIndex)),
+//            this, SLOT(slotTimeTableDataChanged(QModelIndex,QModelIndex)));
+    connect(ui->tvTimeTable->model(), SIGNAL(dataChanged(QModelIndex,QModelIndex)),
+            this, SLOT(slotTimeTableDataChanged(QModelIndex,QModelIndex)));
+
+    mConnToDB->getRelationalTableModel()->setRelation(1,QSqlRelation("localities", "idLocalities", "name"));
+    mConnToDB->getRelationalTableModel()->setRelation(2,QSqlRelation("performers", "idPerformers", "full_name"));
+    mConnToDB->getRelationalTableModel()->setRelation(3,QSqlRelation("weekdays", "idweekday", "name"));
+    mConnToDB->getRelationalTableModel()->setSort(1,Qt::AscendingOrder);
+
+    mConnToDB->getRelationalTableModel()->select();
+    ui->tvTimeTable->setModel(mConnToDB->getRelationalTableModel());
+    ui->tvTimeTable->hideColumn(0);
+    ui->tvTimeTable->setItemDelegate(new QSqlRelationalDelegate(ui->tvTimeTable));
+}
+
+void TaskManager::updateMissingCalls()
+{
+    QString strSearchDate;
+    strSearchDate = "'"+ui->dteSearch->date().toString("yyyy-MM-dd")+"%'";
+    QString selectMissedCalls = "select "
+            "missed_calls.end_call as 'Время',"
+            "count(missed_calls.number) as 'Кол-во',"
+            "missed_calls.number as 'Номер телефона',"
+            "contracts.contract_number as 'Номер договора',"
+            "contracts.last_name as 'Фамилия', "
+            "contracts.first_name as 'Имя',"
+            "contracts.patronymic as 'Отчество',"
+            "addresses.locality as 'Нас.пункт',"
+            "addresses.street as 'Улица',"
+            "addresses.house as 'Дом',"
+            "addresses.apartment as 'Квартира' "
+            "from missed_calls "
+            "inner join contracts on contracts.phone_number = missed_calls.number "
+            "inner join addresses on addresses.idaddresses = contracts.idlocality "
+            "where date_call = " + strSearchDate +
+            " group by contract_number "
+            "order by end_call ";
+
+    mConnToDB->enterCommand(selectMissedCalls);
+    ui->tvMissedCalls->setModel(mConnToDB->getQueryModel());
+    ui->tvMissedCalls->resizeColumnsToContents();
+    ui->tvMissedCalls->resizeRowsToContents();
+}
+
+void TaskManager::updateTasks()
 {
     QString strSearchDate;
     strSearchDate = "'"+ui->dteSearch->date().toString("yyyy-MM-dd")+"%'";
@@ -75,49 +154,15 @@ void TaskManager::refreshData()
 
         }
     }
-
     ui->tvTasks->resizeColumnsToContents();
     ui->tvTasks->resizeRowsToContents();
+}
 
-    QString selectMissedCalls = "select "
-            "missed_calls.end_call as 'Время',"
-            "count(missed_calls.number) as 'Кол-во',"
-            "missed_calls.number as 'Номер телефона',"
-            "contracts.contract_number as 'Номер договора',"
-            "contracts.last_name as 'Фамилия', "
-            "contracts.first_name as 'Имя',"
-            "contracts.patronymic as 'Отчество',"
-            "addresses.locality as 'Нас.пункт',"
-            "addresses.street as 'Улица',"
-            "addresses.house as 'Дом',"
-            "addresses.apartment as 'Квартира' "
-            "from missed_calls "
-            "inner join contracts on contracts.phone_number = missed_calls.number "
-            "inner join addresses on addresses.idaddresses = contracts.idlocality "
-            "where date_call = " + strSearchDate +
-            " group by contract_number "
-            "order by end_call ";
-
-    mConnToDB->enterCommand(selectMissedCalls);
-    ui->tvMissedCalls->setModel(mConnToDB->getQueryModel());
-    ui->tvMissedCalls->resizeColumnsToContents();
-    ui->tvMissedCalls->resizeRowsToContents();
-
-
-    QString selectTimeTable = "select "
-            "localities.name as 'Нас. Пункт',"
-            "performers.full_name as 'Исполнитель',"
-            "weekdays.name as 'День недели' "
-            "from "
-            "timetable "
-            "inner join localities on localities.idLocalities = timetable.locality "
-            "inner join performers on performers.idPerformers = timetable.performer "
-            "inner join weekdays on weekdays.idweekday = timetable.weekday "
-            "order by timetable.weekday";
-    mConnToDB->enterCommand(selectTimeTable);
-    ui->tvTimeTable->setModel(mConnToDB->getQueryModel());
-    ui->tvTimeTable->resizeColumnsToContents();
-    ui->tvTimeTable->resizeRowsToContents();
+void TaskManager::refreshData()
+{
+    updateTasks();
+    updateMissingCalls();
+    updateTimeTable();
 }
 
 void TaskManager::on_pbtnDayBack_clicked()
@@ -171,4 +216,15 @@ void TaskManager::on_tvTasks_pressed(const QModelIndex &index)
 void TaskManager::on_tvTimeTable_clicked(const QModelIndex &index)
 {
 
+}
+
+void TaskManager::slotTimeTableDataChanged(QModelIndex topLeft, QModelIndex bottomRight)
+{
+    qDebug()<<"==============================================================";
+    qDebug()<<"TOP_LEFT_ROW: "<<topLeft.row()<<" _COLUMN: "<<topLeft.column();
+    //qDebug()<<mConnToDB->getRelationalTableModel()->data(topLeft).toString();
+    qDebug()<<mConnToDB->getRelationalTableModel()->query().value(0).toString();
+    //qDebug()<<"BOTTOM_RIGHT_ROW: "<<bottomRight.row()<<" _COLUMN"<<bottomRight.column();
+    qDebug()<<"==============================================================";
+    mConnToDB->getRelationalTableModel()->submitAll();
 }

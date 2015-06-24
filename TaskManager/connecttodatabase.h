@@ -24,10 +24,14 @@ public:
     QSqlTableModel *getTableModel() const;
     void setTableModel(QSqlTableModel *value);
 
+    QSqlRelationalTableModel *getRelationalTableModel() const;
+    void setRelationalTableModel(QSqlRelationalTableModel *value);
+
 private:
     QSqlDatabase db;
     QSqlQueryModel* queryModel;
     QSqlTableModel* tableModel;
+    QSqlRelationalTableModel *relationalTableModel;
 
     void connectingToDB();
     void disconnectingToDB();

@@ -2,7 +2,9 @@
 #define TASKMANAGER_H
 
 #include <QWidget>
-
+#include <QStandardItemModel>
+#include <QSqlRelationalDelegate>
+#include <comboboxdelegate.h>
 namespace Ui {
 class TaskManager;
 }
@@ -19,9 +21,14 @@ public:
     ConnectToDataBase *connToDB() const;
     void setConnToDB(ConnectToDataBase *connToDB);
 
+    void updateTimeTable();
+    void updateMissingCalls();
+    void updateTasks();
+
 private:
     ConnectToDataBase* mConnToDB;
-
+    ComboBoxDelegate *cbxDelegate;
+    Ui::TaskManager *ui;
     ///
     /// \brief refresh
     /// Обновляет данные о задачах и пропущенных звонках
@@ -46,8 +53,7 @@ private slots:
 
     void on_tvTimeTable_clicked(const QModelIndex &index);
 
-private:
-    Ui::TaskManager *ui;
+    void slotTimeTableDataChanged(QModelIndex topLeft,QModelIndex bottomRight);
 };
 
 #endif // TASKMANAGER_H

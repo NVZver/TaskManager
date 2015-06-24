@@ -6,6 +6,7 @@ INPUT(
 ./debug\task.o
 ./debug\connecttodatabase.o
 ./debug\problem.o
+./debug\comboboxdelegate.o
 ./debug\moc_taskmanager.o
 ./debug\moc_authentication.o
 ./debug\moc_customersearch.o

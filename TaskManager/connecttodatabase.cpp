@@ -26,6 +26,16 @@ void ConnectToDataBase::setTableModel(QSqlTableModel *value)
 {
     tableModel = value;
 }
+QSqlRelationalTableModel *ConnectToDataBase::getRelationalTableModel() const
+{
+    return relationalTableModel;
+}
+
+void ConnectToDataBase::setRelationalTableModel(QSqlRelationalTableModel *value)
+{
+    relationalTableModel = value;
+}
+
 
 void ConnectToDataBase::enterCommand(QString command)
 {
@@ -106,6 +116,7 @@ void ConnectToDataBase::connectingToDB()
     db.setPassword("qwertyu1");
     if(db.open()){qDebug()<<"Подлючено...";}
     tableModel = new QSqlTableModel(0,db);
+    this->relationalTableModel = new QSqlRelationalTableModel(0,db);
 }
 
 
