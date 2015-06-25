@@ -19,6 +19,9 @@ public:
 
     ConnectToDataBase *connToDB() const;
     void setConnToDB(ConnectToDataBase *connToDB);
+    QString getAbonentID() const;
+    void setAbonentID(const QString &value);
+
 signals:
     void CreationCompleted();
 
@@ -32,6 +35,7 @@ private slots:
     void slotRemoveProblem(int id);
 
 private:
+    QString abonentID;
     QList<QString> mProblemsIDList;
     QList<QString> mProblemsNamesList;
     QList<QString> mResultIDList;

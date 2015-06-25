@@ -26,6 +26,7 @@ Task::~Task()
 void Task::fillingDetails(QString contractNumber)
 {
     QString command = "select "
+            "abonents.idAbonent, "
             "abonents.contract, "
             "localities.name, "
             "abonents.address "
@@ -33,9 +34,10 @@ void Task::fillingDetails(QString contractNumber)
             "inner join localities on localities.idLocalities = abonents.idLocalities "
             "where abonents.contract = '"+contractNumber+"'";
     mConnToDB->enterCommand(command);
-    ui->lntContractNumber->setText(mConnToDB->getQueryModel()->data(mConnToDB->getQueryModel()->index(0,0),Qt::DisplayRole).toString());
-    ui->lntLocality->setText(mConnToDB->getQueryModel()->data(mConnToDB->getQueryModel()->index(0,1),Qt::DisplayRole).toString());
-    ui->lntAddress->setText(mConnToDB->getQueryModel()->data(mConnToDB->getQueryModel()->index(0,2),Qt::DisplayRole).toString());
+    this->setAbonentID(mConnToDB->getQueryModel()->data(mConnToDB->getQueryModel()->index(0,0),Qt::DisplayRole).toString());
+    ui->lntContractNumber->setText(mConnToDB->getQueryModel()->data(mConnToDB->getQueryModel()->index(0,1),Qt::DisplayRole).toString());
+    ui->lntLocality->setText(mConnToDB->getQueryModel()->data(mConnToDB->getQueryModel()->index(0,2),Qt::DisplayRole).toString());
+    ui->lntAddress->setText(mConnToDB->getQueryModel()->data(mConnToDB->getQueryModel()->index(0,3),Qt::DisplayRole).toString());
 }
 
 /// Заполняет списки наименований проблем и результатов
@@ -138,17 +140,13 @@ void Task::createTask(int index)
                      << "completed"
                      << "comment";
     valuesList<<QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss"); //????
-    valuesList<<ui->lntLocality->text();
-    //valuesList<<ui->lntStreet->text();
-    //valuesList<<ui->lntHouse->text();
-    //valuesList<<ui->lntApartment->text();
+    valuesList<<getAbonentID();
     valuesList<<mProblemsList[index]->getProblemID();
-    valuesList<<"1"; // PERFORMER
+    valuesList<<"6"; // PERFORMER
     valuesList<<ui->dteDeadline->dateTime().toString("yyyy-MM-dd hh:mm:ss");
-    if(mProblemsList[index]->getStrResultValue() != "Завершина"){ valuesList<<"0";}
-    else {valuesList<<"1";}
     valuesList<<mProblemsList[index]->getResultID();
-    valuesList<<ui->lntContractNumber->text();
+    if(mProblemsList[index]->getStrResultValue() != "Завершена"){ valuesList<<"0";}
+    else {valuesList<<"1";}
     valuesList<<ui->txtComment->toPlainText();
     mConnToDB->insertData("tasks", columnsNamesList, valuesList);
 }
@@ -220,6 +218,16 @@ void Task::slotRemoveProblem(int id)
 {
     removeProblem(id);
 }
+QString Task::getAbonentID() const
+{
+    return abonentID;
+}
+
+void Task::setAbonentID(const QString &value)
+{
+    abonentID = value;
+}
+
 
 ConnectToDataBase *Task::connToDB() const
 {
