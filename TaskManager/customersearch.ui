@@ -68,7 +68,7 @@
         </size>
        </property>
        <property name="currentIndex">
-        <number>0</number>
+        <number>1</number>
        </property>
        <widget class="QWidget" name="tabSearchByContract">
         <attribute name="title">
@@ -100,7 +100,7 @@
            <item>
             <widget class="QLabel" name="lblLastName">
              <property name="text">
-              <string>Фамилия</string>
+              <string>Полное имя</string>
              </property>
             </widget>
            </item>
@@ -144,40 +144,12 @@
            <item>
             <widget class="QLabel" name="label_2">
              <property name="text">
-              <string>Улица</string>
+              <string>Адрес</string>
              </property>
             </widget>
            </item>
            <item>
             <widget class="QLineEdit" name="lntStreet"/>
-           </item>
-          </layout>
-         </item>
-         <item>
-          <layout class="QHBoxLayout" name="horizontalLayout_5">
-           <item>
-            <widget class="QLabel" name="label_3">
-             <property name="text">
-              <string>Дом</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLabel" name="label_4">
-             <property name="text">
-              <string>Квартира</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </item>
-         <item>
-          <layout class="QHBoxLayout" name="horizontalLayout_4">
-           <item>
-            <widget class="QLineEdit" name="lntHouse"/>
-           </item>
-           <item>
-            <widget class="QLineEdit" name="lntApartment"/>
            </item>
           </layout>
          </item>

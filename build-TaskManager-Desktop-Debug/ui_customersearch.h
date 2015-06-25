@@ -54,12 +54,6 @@ public:
     QLineEdit *lntLocality;
     QLabel *label_2;
     QLineEdit *lntStreet;
-    QHBoxLayout *horizontalLayout_5;
-    QLabel *label_3;
-    QLabel *label_4;
-    QHBoxLayout *horizontalLayout_4;
-    QLineEdit *lntHouse;
-    QLineEdit *lntApartment;
     QSpacerItem *verticalSpacer_2;
     QTableView *tvCustomers;
 
@@ -170,36 +164,6 @@ public:
 
         verticalLayout_4->addLayout(verticalLayout_3);
 
-        horizontalLayout_5 = new QHBoxLayout();
-        horizontalLayout_5->setObjectName(QStringLiteral("horizontalLayout_5"));
-        label_3 = new QLabel(tabSearchByAddress);
-        label_3->setObjectName(QStringLiteral("label_3"));
-
-        horizontalLayout_5->addWidget(label_3);
-
-        label_4 = new QLabel(tabSearchByAddress);
-        label_4->setObjectName(QStringLiteral("label_4"));
-
-        horizontalLayout_5->addWidget(label_4);
-
-
-        verticalLayout_4->addLayout(horizontalLayout_5);
-
-        horizontalLayout_4 = new QHBoxLayout();
-        horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
-        lntHouse = new QLineEdit(tabSearchByAddress);
-        lntHouse->setObjectName(QStringLiteral("lntHouse"));
-
-        horizontalLayout_4->addWidget(lntHouse);
-
-        lntApartment = new QLineEdit(tabSearchByAddress);
-        lntApartment->setObjectName(QStringLiteral("lntApartment"));
-
-        horizontalLayout_4->addWidget(lntApartment);
-
-
-        verticalLayout_4->addLayout(horizontalLayout_4);
-
         verticalSpacer_2 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
         verticalLayout_4->addItem(verticalSpacer_2);
@@ -219,7 +183,7 @@ public:
 
         retranslateUi(CustomerSearch);
 
-        tabWidget->setCurrentIndex(0);
+        tabWidget->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(CustomerSearch);
@@ -232,12 +196,10 @@ public:
         pbtnCreateTask->setText(QApplication::translate("CustomerSearch", "\320\241\320\276\320\267\320\264\320\260\321\202\321\214 \320\267\320\260\320\264\320\260\321\207\321\203", 0));
         lblContractNumber->setText(QApplication::translate("CustomerSearch", "\342\204\226 \320\264\320\276\320\263\320\276\320\262\320\276\321\200\320\260", 0));
         lblPhoneNumber->setText(QApplication::translate("CustomerSearch", "\320\242\320\265\320\273\320\265\321\204\320\276\320\275", 0));
-        lblLastName->setText(QApplication::translate("CustomerSearch", "\320\244\320\260\320\274\320\270\320\273\320\270\321\217", 0));
+        lblLastName->setText(QApplication::translate("CustomerSearch", "\320\237\320\276\320\273\320\275\320\276\320\265 \320\270\320\274\321\217", 0));
         tabWidget->setTabText(tabWidget->indexOf(tabSearchByContract), QApplication::translate("CustomerSearch", "\320\224\320\276\320\263\320\276\320\262\320\276\321\200", 0));
         lblLocality->setText(QApplication::translate("CustomerSearch", "\320\235\320\260\321\201. \320\277\321\203\320\275\320\272\321\202", 0));
-        label_2->setText(QApplication::translate("CustomerSearch", "\320\243\320\273\320\270\321\206\320\260", 0));
-        label_3->setText(QApplication::translate("CustomerSearch", "\320\224\320\276\320\274", 0));
-        label_4->setText(QApplication::translate("CustomerSearch", "\320\232\320\262\320\260\321\200\321\202\320\270\321\200\320\260", 0));
+        label_2->setText(QApplication::translate("CustomerSearch", "\320\220\320\264\321\200\320\265\321\201", 0));
         tabWidget->setTabText(tabWidget->indexOf(tabSearchByAddress), QApplication::translate("CustomerSearch", "\320\220\320\264\321\200\320\265\321\201", 0));
     } // retranslateUi
 

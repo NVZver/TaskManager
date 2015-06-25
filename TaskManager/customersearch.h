@@ -35,10 +35,6 @@ private slots:
 
     void on_lntStreet_textChanged(const QString &arg1);
 
-    void on_lntHouse_textChanged(const QString &arg1);
-
-    void on_lntApartment_textChanged(const QString &arg1);
-
     void on_tvCustomers_doubleClicked(const QModelIndex &index);
 
     void on_chbxNoCustomer_clicked();

@@ -26,15 +26,31 @@ void CustomerSearch::on_lntContractNumber_textChanged(const QString &arg1)
 
 void CustomerSearch::on_lntPhoneNumber_textChanged(const QString &arg1)
 {
-    for(int i=1; i<4; i++)
+    QString condition;
+    if(ui->lntLName->text() == 0)
     {
-        QString condition = "abonents.phone_number"+QString::number(i)+" like '"+arg1+"%'";
-        if(updateSearchData(condition))
+        for(int i=1; i<4; i++)
         {
-            break;
+            condition = "abonents.phone_number"+QString::number(i)+" like '"+arg1+"%'";
+            if(updateSearchData(condition))
+            {
+                break;
+            }
         }
     }
-    //updateSearchData(condition);
+    else
+    {
+        for(int i=1; i<4; i++)
+        {
+            condition = "abonents.phone_number"+QString::number(i)+" like '"+arg1+"%' "
+                        "and abonents.full_name like '"+ui->lntLName->text()+"%'";
+            if(updateSearchData(condition))
+            {
+                break;
+            }
+        }
+    }
+
 }
 
 void CustomerSearch::on_lntLName_textChanged(const QString &arg1)
@@ -42,12 +58,19 @@ void CustomerSearch::on_lntLName_textChanged(const QString &arg1)
     QString condition;
     if(ui->lntPhoneNumber->text() !=0)
     {
-        condition = "abonents.phone_number like '"+ui->lntPhoneNumber->text()+"%' "
-                    "abonents.last_name like '"+arg1+"%'";
+        for(int i=1; i<4; i++)
+        {
+            condition = "abonents.phone_number"+QString::number(i)+" like '"+ui->lntPhoneNumber->text()+"%' "
+                        "and abonents.full_name like '"+arg1+"%'";
+            if(updateSearchData(condition))
+            {
+                break;
+            }
+        }
     }
     else
     {
-        condition = "abonents.last_name like '"+arg1+"%'";
+        condition = "abonents.full_name like '"+arg1+"%'";
         updateSearchData(condition);
     }
 
@@ -55,7 +78,7 @@ void CustomerSearch::on_lntLName_textChanged(const QString &arg1)
 
 void CustomerSearch::on_lntLocality_textChanged(const QString &arg1)
 {
-    QString condition = "addresses.locality like '"+arg1+"%'";
+    QString condition = "localities.name like '"+arg1+"%'";
     updateSearchData(condition);
 }
 
@@ -64,47 +87,14 @@ void CustomerSearch::on_lntStreet_textChanged(const QString &arg1)
     QString condition;
     if(ui->lntLocality->text() != "")
     {
-        condition = "addresses.locality like '"+ui->lntLocality->text()+"%' "
-                "and addresses.street like '"+arg1+"%'";
+        condition = "localities.name like '"+ui->lntLocality->text()+"%' "
+                "and abonents.address like '"+arg1+"%'";
         updateSearchData(condition);
     }
     else
     {
-        condition = "addresses.street like '"+arg1+"%'";
+        condition = "abonents.address like '"+arg1+"%'";
         updateSearchData(condition);
-    }
-}
-
-void CustomerSearch::on_lntHouse_textChanged(const QString &arg1)
-{
-    QString condition;
-    if(ui->lntStreet->text() != "" && ui->lntLocality->text() != 0)
-    {
-        condition = "addresses.locality like '"+ui->lntLocality->text()+"%' "
-                "and addresses.street like '"+ui->lntStreet->text()+"%' "
-                "and addresses.house like '"+arg1+"%'";
-        updateSearchData(condition);
-    }
-    else
-    {
-        ui->lntHouse->setText("");
-    }
-}
-
-void CustomerSearch::on_lntApartment_textChanged(const QString &arg1)
-{
-    QString condition;
-    if(ui->lntStreet->text() != "" && ui->lntLocality->text() != 0 && ui->lntHouse->text()!="")
-    {
-        condition = "addresses.locality like '"+ui->lntLocality->text()+"%' "
-                "and addresses.street like '"+ui->lntStreet->text()+"%' "
-                "and addresses.house like '"+ui->lntHouse->text()+"%' "
-                "and addresses.apartment like '"+arg1+"%'";
-        updateSearchData(condition);
-    }
-    else
-    {
-        ui->lntApartment->setText("");
     }
 }
 
