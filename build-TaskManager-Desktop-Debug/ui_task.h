@@ -36,16 +36,12 @@ public:
     QGroupBox *gbxAddress;
     QVBoxLayout *verticalLayout_5;
     QFormLayout *formLayout;
-    QLabel *lblLocality;
-    QLineEdit *lntLocality;
-    QLabel *lblStreet;
-    QLineEdit *lntStreet;
-    QLabel *lblHouse;
-    QLineEdit *lntHouse;
-    QLineEdit *lntApartment;
-    QLabel *lblApartment;
     QLabel *lblContractNumber;
     QLineEdit *lntContractNumber;
+    QLabel *lblLocality;
+    QLineEdit *lntLocality;
+    QLabel *lblAddress;
+    QLineEdit *lntAddress;
     QLabel *lblPerformer;
     QComboBox *cbxPerformers;
     QLabel *lblDeadline;
@@ -79,48 +75,9 @@ public:
         verticalLayout_5->setObjectName(QStringLiteral("verticalLayout_5"));
         formLayout = new QFormLayout();
         formLayout->setObjectName(QStringLiteral("formLayout"));
+        formLayout->setFieldGrowthPolicy(QFormLayout::AllNonFixedFieldsGrow);
         formLayout->setHorizontalSpacing(0);
         formLayout->setVerticalSpacing(3);
-        lblLocality = new QLabel(gbxAddress);
-        lblLocality->setObjectName(QStringLiteral("lblLocality"));
-
-        formLayout->setWidget(1, QFormLayout::LabelRole, lblLocality);
-
-        lntLocality = new QLineEdit(gbxAddress);
-        lntLocality->setObjectName(QStringLiteral("lntLocality"));
-
-        formLayout->setWidget(1, QFormLayout::FieldRole, lntLocality);
-
-        lblStreet = new QLabel(gbxAddress);
-        lblStreet->setObjectName(QStringLiteral("lblStreet"));
-
-        formLayout->setWidget(2, QFormLayout::LabelRole, lblStreet);
-
-        lntStreet = new QLineEdit(gbxAddress);
-        lntStreet->setObjectName(QStringLiteral("lntStreet"));
-
-        formLayout->setWidget(2, QFormLayout::FieldRole, lntStreet);
-
-        lblHouse = new QLabel(gbxAddress);
-        lblHouse->setObjectName(QStringLiteral("lblHouse"));
-
-        formLayout->setWidget(3, QFormLayout::LabelRole, lblHouse);
-
-        lntHouse = new QLineEdit(gbxAddress);
-        lntHouse->setObjectName(QStringLiteral("lntHouse"));
-
-        formLayout->setWidget(3, QFormLayout::FieldRole, lntHouse);
-
-        lntApartment = new QLineEdit(gbxAddress);
-        lntApartment->setObjectName(QStringLiteral("lntApartment"));
-
-        formLayout->setWidget(4, QFormLayout::FieldRole, lntApartment);
-
-        lblApartment = new QLabel(gbxAddress);
-        lblApartment->setObjectName(QStringLiteral("lblApartment"));
-
-        formLayout->setWidget(4, QFormLayout::LabelRole, lblApartment);
-
         lblContractNumber = new QLabel(gbxAddress);
         lblContractNumber->setObjectName(QStringLiteral("lblContractNumber"));
         lblContractNumber->setFrameShape(QFrame::NoFrame);
@@ -132,25 +89,45 @@ public:
 
         formLayout->setWidget(0, QFormLayout::FieldRole, lntContractNumber);
 
+        lblLocality = new QLabel(gbxAddress);
+        lblLocality->setObjectName(QStringLiteral("lblLocality"));
+
+        formLayout->setWidget(1, QFormLayout::LabelRole, lblLocality);
+
+        lntLocality = new QLineEdit(gbxAddress);
+        lntLocality->setObjectName(QStringLiteral("lntLocality"));
+
+        formLayout->setWidget(1, QFormLayout::FieldRole, lntLocality);
+
+        lblAddress = new QLabel(gbxAddress);
+        lblAddress->setObjectName(QStringLiteral("lblAddress"));
+
+        formLayout->setWidget(2, QFormLayout::LabelRole, lblAddress);
+
+        lntAddress = new QLineEdit(gbxAddress);
+        lntAddress->setObjectName(QStringLiteral("lntAddress"));
+
+        formLayout->setWidget(2, QFormLayout::FieldRole, lntAddress);
+
         lblPerformer = new QLabel(gbxAddress);
         lblPerformer->setObjectName(QStringLiteral("lblPerformer"));
 
-        formLayout->setWidget(5, QFormLayout::LabelRole, lblPerformer);
+        formLayout->setWidget(3, QFormLayout::LabelRole, lblPerformer);
 
         cbxPerformers = new QComboBox(gbxAddress);
         cbxPerformers->setObjectName(QStringLiteral("cbxPerformers"));
 
-        formLayout->setWidget(5, QFormLayout::FieldRole, cbxPerformers);
+        formLayout->setWidget(3, QFormLayout::FieldRole, cbxPerformers);
 
         lblDeadline = new QLabel(gbxAddress);
         lblDeadline->setObjectName(QStringLiteral("lblDeadline"));
 
-        formLayout->setWidget(6, QFormLayout::LabelRole, lblDeadline);
+        formLayout->setWidget(4, QFormLayout::LabelRole, lblDeadline);
 
         dteDeadline = new QDateTimeEdit(gbxAddress);
         dteDeadline->setObjectName(QStringLiteral("dteDeadline"));
 
-        formLayout->setWidget(6, QFormLayout::FieldRole, dteDeadline);
+        formLayout->setWidget(4, QFormLayout::FieldRole, dteDeadline);
 
 
         verticalLayout_5->addLayout(formLayout);
@@ -233,11 +210,9 @@ public:
     {
         Task->setWindowTitle(QApplication::translate("Task", "\320\227\320\260\320\264\320\260\321\207\320\260", 0));
         gbxAddress->setTitle(QApplication::translate("Task", "\320\240\320\265\320\272\320\262\320\270\320\267\320\270\321\202\321\213 \320\272\320\273\320\270\320\265\320\275\321\202\320\260", 0));
-        lblLocality->setText(QApplication::translate("Task", "\320\275\320\260\321\201. \320\277\321\203\320\275\320\272\321\202", 0));
-        lblStreet->setText(QApplication::translate("Task", "\321\203\320\273\320\270\321\206\320\260", 0));
-        lblHouse->setText(QApplication::translate("Task", "\320\264\320\276\320\274", 0));
-        lblApartment->setText(QApplication::translate("Task", "\320\272\320\262\320\260\321\200\321\202\320\270\321\200\320\260", 0));
         lblContractNumber->setText(QApplication::translate("Task", "\342\204\226 \320\264\320\276\320\263\320\276\320\262\320\260\321\200\320\260", 0));
+        lblLocality->setText(QApplication::translate("Task", "\320\275\320\260\321\201. \320\277\321\203\320\275\320\272\321\202", 0));
+        lblAddress->setText(QApplication::translate("Task", "\320\220\320\264\321\200\320\265\321\201", 0));
         lblPerformer->setText(QApplication::translate("Task", "\320\230\321\201\320\277\320\276\320\273\320\275\320\270\321\202\320\265\320\273\321\214", 0));
         lblDeadline->setText(QApplication::translate("Task", "\320\224\320\260\321\202\320\260 \320\262\321\213\320\277\320\276\320\273\320\275\320\265\320\275\320\270\321\217", 0));
         gbxProblems->setTitle(QApplication::translate("Task", "\320\237\321\200\320\276\320\261\320\273\320\265\320\274\321\213", 0));

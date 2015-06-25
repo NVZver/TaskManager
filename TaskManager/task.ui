@@ -34,52 +34,15 @@
      <layout class="QVBoxLayout" name="verticalLayout_5">
       <item>
        <layout class="QFormLayout" name="formLayout">
+        <property name="fieldGrowthPolicy">
+         <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
+        </property>
         <property name="horizontalSpacing">
          <number>0</number>
         </property>
         <property name="verticalSpacing">
          <number>3</number>
         </property>
-        <item row="1" column="0">
-         <widget class="QLabel" name="lblLocality">
-          <property name="text">
-           <string>нас. пункт</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="1">
-         <widget class="QLineEdit" name="lntLocality"/>
-        </item>
-        <item row="2" column="0">
-         <widget class="QLabel" name="lblStreet">
-          <property name="text">
-           <string>улица</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="1">
-         <widget class="QLineEdit" name="lntStreet"/>
-        </item>
-        <item row="3" column="0">
-         <widget class="QLabel" name="lblHouse">
-          <property name="text">
-           <string>дом</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="1">
-         <widget class="QLineEdit" name="lntHouse"/>
-        </item>
-        <item row="4" column="1">
-         <widget class="QLineEdit" name="lntApartment"/>
-        </item>
-        <item row="4" column="0">
-         <widget class="QLabel" name="lblApartment">
-          <property name="text">
-           <string>квартира</string>
-          </property>
-         </widget>
-        </item>
         <item row="0" column="0">
          <widget class="QLabel" name="lblContractNumber">
           <property name="frameShape">
@@ -93,24 +56,44 @@
         <item row="0" column="1">
          <widget class="QLineEdit" name="lntContractNumber"/>
         </item>
-        <item row="5" column="0">
+        <item row="1" column="0">
+         <widget class="QLabel" name="lblLocality">
+          <property name="text">
+           <string>нас. пункт</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QLineEdit" name="lntLocality"/>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="lblAddress">
+          <property name="text">
+           <string>Адрес</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QLineEdit" name="lntAddress"/>
+        </item>
+        <item row="3" column="0">
          <widget class="QLabel" name="lblPerformer">
           <property name="text">
            <string>Исполнитель</string>
           </property>
          </widget>
         </item>
-        <item row="5" column="1">
+        <item row="3" column="1">
          <widget class="QComboBox" name="cbxPerformers"/>
         </item>
-        <item row="6" column="0">
+        <item row="4" column="0">
          <widget class="QLabel" name="lblDeadline">
           <property name="text">
            <string>Дата выполнения</string>
           </property>
          </widget>
         </item>
-        <item row="6" column="1">
+        <item row="4" column="1">
          <widget class="QDateTimeEdit" name="dteDeadline"/>
         </item>
        </layout>

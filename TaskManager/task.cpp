@@ -26,20 +26,16 @@ Task::~Task()
 void Task::fillingDetails(QString contractNumber)
 {
     QString command = "select "
-            "contracts.contract_number, "
-            "addresses.locality, "
-            "addresses.street, "
-            "addresses.house, "
-            "addresses.apartment "
-            "from contracts "
-            "inner join addresses on addresses.idaddresses = contracts.idstreet "
-            "where contracts.contract_number = '"+contractNumber+"'";
+            "abonents.contract, "
+            "localities.name, "
+            "abonents.address "
+            "from abonents "
+            "inner join localities on localities.idLocalities = abonents.idLocalities "
+            "where abonents.contract = '"+contractNumber+"'";
     mConnToDB->enterCommand(command);
     ui->lntContractNumber->setText(mConnToDB->getQueryModel()->data(mConnToDB->getQueryModel()->index(0,0),Qt::DisplayRole).toString());
     ui->lntLocality->setText(mConnToDB->getQueryModel()->data(mConnToDB->getQueryModel()->index(0,1),Qt::DisplayRole).toString());
-    ui->lntStreet->setText(mConnToDB->getQueryModel()->data(mConnToDB->getQueryModel()->index(0,2),Qt::DisplayRole).toString());
-    ui->lntHouse->setText(mConnToDB->getQueryModel()->data(mConnToDB->getQueryModel()->index(0,3),Qt::DisplayRole).toString());
-    ui->lntApartment->setText(mConnToDB->getQueryModel()->data(mConnToDB->getQueryModel()->index(0,4),Qt::DisplayRole).toString());
+    ui->lntAddress->setText(mConnToDB->getQueryModel()->data(mConnToDB->getQueryModel()->index(0,2),Qt::DisplayRole).toString());
 }
 
 /// Заполняет списки наименований проблем и результатов
@@ -146,9 +142,9 @@ void Task::createTask(int index)
                      << "comment";
     valuesList<<QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss");
     valuesList<<ui->lntLocality->text();
-    valuesList<<ui->lntStreet->text();
-    valuesList<<ui->lntHouse->text();
-    valuesList<<ui->lntApartment->text();
+    //valuesList<<ui->lntStreet->text();
+    //valuesList<<ui->lntHouse->text();
+    //valuesList<<ui->lntApartment->text();
     valuesList<<mProblemsList[index]->getProblemID();
     valuesList<<"1"; // PERFORMER
     valuesList<<ui->dteDeadline->dateTime().toString("yyyy-MM-dd hh:mm:ss");
