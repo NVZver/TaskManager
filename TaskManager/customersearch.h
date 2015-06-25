@@ -53,7 +53,7 @@ private:
     ConnectToDataBase* mConnToDB;
     Ui::CustomerSearch *ui;
     int activeRow;
-    void updateSearchData(QString condition);
+    bool updateSearchData(QString condition);
     void openNewTask(QString contractNumber);
 };
 

@@ -4,6 +4,8 @@
 #include <QWidget>
 #include <QStandardItemModel>
 #include <QSqlRelationalDelegate>
+#include <QMenu>
+#include <QContextMenuEvent>
 #include <comboboxdelegate.h>
 namespace Ui {
 class TaskManager;
@@ -25,14 +27,25 @@ public:
     void updateMissingCalls();
     void updateTasks();
 
+    QModelIndex getActiveItemIndex() const;
+    void setActiveItemIndex(QModelIndex value);
+
 private:
     ConnectToDataBase* mConnToDB;
     ComboBoxDelegate *cbxDelegate;
     Ui::TaskManager *ui;
+    QModelIndex activeItemIndex;
+    QAction *deleteAct;
+    QAction *insertAct;
+
+
     ///
     /// \brief refresh
     /// Обновляет данные о задачах и пропущенных звонках
     void refreshData();
+    void contextMenuEvent(QContextMenuEvent *event);
+    void createActions();
+    void deleteRowTimeTable(QModelIndex index);
 
 private slots:
     void on_pbtnDayBack_clicked();
@@ -49,12 +62,13 @@ private slots:
 
     void slotCreationCompleted();
 
-    void on_tvTasks_pressed(const QModelIndex &index);
-
-    void on_tvTimeTable_clicked(const QModelIndex &index);
-
     void slotTimeTableDataChanged(QModelIndex topLeft,QModelIndex bottomRight);
 
+    void slotDeleteRow();
+
+    void slotInsertRow();
+
+    void on_tvTimeTable_pressed(const QModelIndex &index);
 };
 
 #endif // TASKMANAGER_H

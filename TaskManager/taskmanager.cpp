@@ -19,9 +19,7 @@ TaskManager::TaskManager(QWidget *parent) :
     ui->dteSearch->setDate(QDate::currentDate());
     ui->dteSearch->setCalendarPopup(true);
     refreshData();
-
-
-
+    this->createActions();
 }
 
 TaskManager::~TaskManager()
@@ -49,7 +47,6 @@ void TaskManager::updateTimeTable()
     mConnToDB->getRelationalTableModel()->setRelation(1,QSqlRelation("localities", "idLocalities", "name"));
     mConnToDB->getRelationalTableModel()->setRelation(2,QSqlRelation("performers", "idPerformers", "full_name"));
     mConnToDB->getRelationalTableModel()->setRelation(3,QSqlRelation("weekdays", "idweekday", "name"));
-    mConnToDB->getRelationalTableModel()->setSort(3,Qt::AscendingOrder);
     mConnToDB->getRelationalTableModel()->setHeaderData(1,Qt::Horizontal,QObject::tr("Нас.пункт"));
     mConnToDB->getRelationalTableModel()->setHeaderData(2,Qt::Horizontal,QObject::tr("Исполнитель"));
     mConnToDB->getRelationalTableModel()->setHeaderData(3,Qt::Horizontal,QObject::tr("День недели"));
@@ -96,16 +93,14 @@ void TaskManager::updateTasks()
                           "tasks.date_completion as 'Дата выполнения', "
                           "count(problems.name) as 'Кол-во проблем',"
                           "tasks.completed as 'Завершено', "
-                          "tasks.locality as 'Нас.пункт', "
-                          "tasks.street as 'Улица', "
-                          "tasks.house as 'Дом', "
-                          "tasks.apartment as 'Квартира', "
+                          "localities.name as 'Нас.пункт', "
+                          "abonents.address as 'Адрес', "
                           "problems.name as 'Суть проблемы', "
-                          "performers.first_name as 'Имя исполнителя', "
-                          "tasks.contract_number as '№ договора' "
+                          "performers.full_name as 'Исполнитель', "
+                          "abonents.contract as '№ договора' "
                           "from tasks "
-                          "inner join performers on performers.idperformer = tasks.performer "
-                          "inner join problems on problems.idproblem = tasks.problem"
+                          "inner join localities on localities.idperformer = abonents.idLocalities "
+                          "inner join abonents on abonents.idproblem = tasks.problem"
                           " where tasks.date_completion like"+strSearchDate+
                           "group by tasks.locality, tasks.street,tasks.house,tasks.apartment "
                           "order by tasks.date_completion "
@@ -129,6 +124,15 @@ void TaskManager::updateTasks()
     ui->tvTasks->resizeColumnsToContents();
     ui->tvTasks->resizeRowsToContents();
 }
+QModelIndex TaskManager::getActiveItemIndex() const
+{
+    return activeItemIndex;
+}
+
+void TaskManager::setActiveItemIndex(QModelIndex value)
+{
+    activeItemIndex = value;
+}
 
 void TaskManager::refreshData()
 {
@@ -139,7 +143,30 @@ void TaskManager::refreshData()
 
 void TaskManager::contextMenuEvent(QContextMenuEvent *event)
 {
+    QMenu menu(ui->tvTimeTable);
+    menu.addAction(this->insertAct);
+    menu.addAction(this->deleteAct);
+    menu.exec(event->globalPos());
+}
 
+void TaskManager::createActions()
+{
+    this->insertAct = new QAction(tr("&Insert"),this);
+    //this->insertAct->setShortcut(QKeySequence::New);
+    this->setStatusTip(tr("Добавляет новую строку в конец списка."));
+    connect(insertAct, SIGNAL(triggered()), this, SLOT(slotInsertRow()));
+
+    this->deleteAct = new QAction(tr("&Delete"),this);
+    //this->deleteAct->setShortcut(QKeySequence::Delete);
+    this->setStatusTip(tr("Удаляет выбранную строку."));
+    connect(deleteAct, SIGNAL(triggered()), this, SLOT(slotDeleteRow()));
+}
+
+void TaskManager::deleteRowTimeTable(QModelIndex index)
+{
+    mConnToDB->getRelationalTableModel()->removeRow(index.row());
+    mConnToDB->getRelationalTableModel()->submitAll();
+    this->updateTimeTable();
 }
 
 void TaskManager::on_pbtnDayBack_clicked()
@@ -184,20 +211,22 @@ void TaskManager::slotCreationCompleted()
     refreshData();
 }
 
-void TaskManager::on_tvTasks_pressed(const QModelIndex &index)
-{
-    //ui->tvTasks->selectRow(index.row());
-    //ui->tvTasks->setStyleSheet("selection-background-color: #FF92BB");
-}
-
-void TaskManager::on_tvTimeTable_clicked(const QModelIndex &index)
-{
-
-}
-
 void TaskManager::slotTimeTableDataChanged(QModelIndex topLeft, QModelIndex bottomRight)
 {
-    qDebug()<<"SUBMIT_ALL";
     mConnToDB->getRelationalTableModel()->submitAll();
 }
 
+void TaskManager::slotDeleteRow()
+{
+    this->deleteRowTimeTable(this->activeItemIndex);
+}
+
+void TaskManager::slotInsertRow()
+{
+    mConnToDB->getRelationalTableModel()->insertRow(mConnToDB->getRelationalTableModel()->rowCount());
+}
+
+void TaskManager::on_tvTimeTable_pressed(const QModelIndex &index)
+{
+    this->setActiveItemIndex(index);
+}

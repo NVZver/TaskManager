@@ -19,15 +19,22 @@ CustomerSearch::~CustomerSearch()
 
 void CustomerSearch::on_lntContractNumber_textChanged(const QString &arg1)
 {
-    QString condition = "contracts.contract_number like '"+arg1+"%'";
+    QString condition = "abonents.contract like '"+arg1+"%'";
     updateSearchData(condition);
 
 }
 
 void CustomerSearch::on_lntPhoneNumber_textChanged(const QString &arg1)
 {
-    QString condition = "contracts.phone_number like '"+arg1+"%'";
-    updateSearchData(condition);
+    for(int i=1; i<4; i++)
+    {
+        QString condition = "abonents.phone_number"+QString::number(i)+" like '"+arg1+"%'";
+        if(updateSearchData(condition))
+        {
+            break;
+        }
+    }
+    //updateSearchData(condition);
 }
 
 void CustomerSearch::on_lntLName_textChanged(const QString &arg1)
@@ -35,12 +42,12 @@ void CustomerSearch::on_lntLName_textChanged(const QString &arg1)
     QString condition;
     if(ui->lntPhoneNumber->text() !=0)
     {
-        condition = "contracts.phone_number like '"+ui->lntPhoneNumber->text()+"%' "
-                    "contracts.last_name like '"+arg1+"%'";
+        condition = "abonents.phone_number like '"+ui->lntPhoneNumber->text()+"%' "
+                    "abonents.last_name like '"+arg1+"%'";
     }
     else
     {
-        condition = "contracts.last_name like '"+arg1+"%'";
+        condition = "abonents.last_name like '"+arg1+"%'";
         updateSearchData(condition);
     }
 
@@ -101,30 +108,28 @@ void CustomerSearch::on_lntApartment_textChanged(const QString &arg1)
     }
 }
 
-void CustomerSearch::updateSearchData(QString condition)
+bool CustomerSearch::updateSearchData(QString condition)
 {
     QString command = "select "
-            "contracts.contract_number as 'Договор',"
-            "contracts.date_conclusion as 'Дата заключения',"
-            "addresses.locality as 'Нас.пункт',"
-            "addresses.street as 'Улица',"
-            "addresses.house as 'Дом',"
-            "addresses.apartment as 'Квартира',"
-            "contracts.last_name as 'Фамилия',"
-            "contracts.first_name as 'Имя',"
-            "contracts.patronymic as 'Отчество',"
-            "contracts.phone_number as 'Телефон',"
-            "contracts.birthday as 'День рождения',"
-            "contracts.passport_series as 'Серия паспорта',"
-            "contracts.passport_number as 'Номер паспорта' "
-            "from contracts "
-            "inner join addresses on addresses.idaddresses = contracts.idstreet "
+            "abonents.contract as 'Договор',"
+            "abonents.date_conclusion as 'Дата заключения',"
+            "localities.name as 'Нас.пункт',"
+            "abonents.address as 'Адрес',"
+            "abonents.full_name as 'Полное имя',"
+            "abonents.phone_number1 as 'Телефон1',"
+            "abonents.phone_number2 as 'Телефон2',"
+            "abonents.phone_number3 as 'Телефон3',"
+            "abonents.birthday as 'День рождения',"
+            "abonents.passport_series as 'Серия паспорта',"
+            "abonents.passport_number as 'Номер паспорта' "
+            "from abonents "
+            "inner join localities on localities.idLocalities = abonents.idLocalities "
             "where "+condition;
     mConnToDB->enterCommand(command);
     ui->tvCustomers->setModel(mConnToDB->getQueryModel());
     ui->tvCustomers->resizeColumnsToContents();
     ui->tvCustomers->resizeRowsToContents();
-
+    return mConnToDB->getQueryModel()->query().isValid();
 }
 
 void CustomerSearch::openNewTask(QString contractNumber)
