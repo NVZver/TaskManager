@@ -130,18 +130,14 @@ void Task::createTask(int index)
     columnsNamesList.clear();
     valuesList.clear();
     columnsNamesList << "date_creation"
-                     << "locality"
-                     << "street"
-                     << "house"
-                     << "apartment"
+                     << "idAbonent"
                      << "problem"
                      << "performer"
                      << "date_completion"
-                     << "completed"
                      << "result"
-                     << "contract_number"
+                     << "completed"
                      << "comment";
-    valuesList<<QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss");
+    valuesList<<QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss"); //????
     valuesList<<ui->lntLocality->text();
     //valuesList<<ui->lntStreet->text();
     //valuesList<<ui->lntHouse->text();
