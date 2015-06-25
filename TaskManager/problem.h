@@ -40,6 +40,9 @@ public:
     QList<QString> getResultsID() const;
     void setResultsID(const QList<QString> &value);
     QString getResultID();
+
+    QComboBox* cbxProblems;
+    QComboBox* cbxResults;
 private:
     QString taskID;
     int Id;
@@ -50,8 +53,7 @@ private:
     QString strProblemValue;
     QString strResultValue;
     bool isNew;
-    QComboBox* cbxProblems;
-    QComboBox* cbxResults;
+
     QPushButton* pbtnRemove;
 
 signals:

@@ -48,13 +48,13 @@ void Task::updateProblemsData()
     mResultIDList.clear();
     mResultsNameslist.clear();
 
-    mConnToDB->enterCommand("select problems.idproblem, problems.name from problems");
+    mConnToDB->enterCommand("select problems.idProblems, problems.name from problems");
     while(mConnToDB->getQueryModel()->query().next())
     {
         mProblemsIDList<<mConnToDB->getQueryModel()->query().value(0).toString();
         mProblemsNamesList<<mConnToDB->getQueryModel()->query().value(1).toString();
     }
-    mConnToDB->enterCommand("select task_results.idtask_result, task_results.result_name from task_results");
+    mConnToDB->enterCommand("select task_results.idResults, task_results.name from task_results");
     while(mConnToDB->getQueryModel()->query().next())
     {
         mResultIDList<<mConnToDB->getQueryModel()->query().value(0).toString();
@@ -98,6 +98,7 @@ void Task::createProblem(QList<QString> problemsNames, QList<QString> resultsNam
     connect(nProblem, SIGNAL(removeProblem(int)), SLOT(slotRemoveProblem(int)));
     mProblemsList << nProblem;
     ui->vblProblems->addWidget(nProblem);
+    nProblem->cbxResults->setCurrentIndex(nProblem->cbxResults->findText("Ожидание"));
 }
 
 /// Удаление проблемы
