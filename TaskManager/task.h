@@ -51,6 +51,8 @@ private:
     void removeProblem(int id);
     void createTask(int index);
     void updateTask(int index);
+    int selectPerformer(QDateTime datetime);
+    QDateTime selectDateCompletion(int localityID, QDateTime date_creation);
 };
 
 #endif // TASK_H

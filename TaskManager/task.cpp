@@ -70,14 +70,16 @@ void Task::updateProblemsData()
 ///
 void Task::updateTaskData(QString contractNumber, QDate searchDate)
 {
+    qDebug()<<"++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++";
     mProblemsList.clear();
     ui->dteDeadline->setDate(searchDate);
-    QString command = "select tasks.idtask, problems.name, task_results.result_name , tasks.comment "
+    QString command = "select tasks.idTasks, problems.name, task_results.name , tasks.comment "
                       "from tasks "
-                      "inner join problems on problems.idproblem = tasks.problem "
-                      "inner join task_results on task_results.idtask_result = tasks.result "
-                      "where contract_number = "+contractNumber+" and date_completion like '"+searchDate.toString("yyyy-MM-dd")+"%'";
+                      "inner join problems on problems.idProblems = tasks.problem "
+                      "inner join task_results on task_results.idResults = tasks.result "
+                      "where idAbonent = (select idAbonent from abonents where contract = "+contractNumber+") and date_completion like '"+searchDate.toString("yyyy-MM-dd")+"%'";
     mConnToDB->enterCommand(command);
+    qDebug()<<"++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++";
     for(int i = 0; i < mConnToDB->getQueryModel()->rowCount(); ++i)
     {
         createProblem(mProblemsNamesList,mResultsNameslist);
@@ -142,7 +144,7 @@ void Task::createTask(int index)
     valuesList<<QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss"); //????
     valuesList<<getAbonentID();
     valuesList<<mProblemsList[index]->getProblemID();
-    valuesList<<"6"; // PERFORMER
+    valuesList<<"7"; // PERFORMER
     valuesList<<ui->dteDeadline->dateTime().toString("yyyy-MM-dd hh:mm:ss");
     valuesList<<mProblemsList[index]->getResultID();
     if(mProblemsList[index]->getStrResultValue() != "Завершена"){ valuesList<<"0";}
@@ -177,6 +179,39 @@ void Task::updateTask(int index)
                       ", comment = '"+ui->txtComment->toPlainText()+"'"
                       " WHERE idtask = "+mProblemsList[index]->getTaskID();
     mConnToDB->enterCommand(command);
+}
+
+int Task::selectPerformer(QDateTime datetime)
+{
+    QString command = "select "
+                      "performer, "
+                      "date_completion "
+                      "from tasks "
+                      "where date_completion = (select min(date_completion) from tasks where date_completion like '"+datetime.date().toString("yyy-MM-dd")+"%')";
+    mConnToDB->enterCommand(command);
+    return mConnToDB->getQueryModel()->data(mConnToDB->getQueryModel()->index(0,0),Qt::DisplayRole).toInt();
+}
+
+QDateTime Task::selectDateCompletion(int localityID, QDateTime date_creation)
+{
+    int dayID;
+    int dayNumber;
+    QDateTime dateCompletion = date_creation;
+    QString command = "select weekday from timetable where locality = "+QString::number(localityID);
+    mConnToDB->enterCommand(command);
+    dayID = mConnToDB->getQueryModel()->data(mConnToDB->getQueryModel()->index(0,1),Qt::DisplayRole).toInt();
+
+    command.clear();
+    command = "select day_number from weekdays where idweekday = "+QString::number(dayID);
+    mConnToDB->enterCommand(command);
+    dayNumber = mConnToDB->getQueryModel()->data(mConnToDB->getQueryModel()->index(0,0),Qt::DisplayRole).toInt();
+
+    while(dayNumber != dateCompletion.date().dayOfWeek())
+    {
+        dateCompletion.addDays(+1);
+    }
+    dateCompletion.time().addSecs(15*60);
+    return dateCompletion;
 }
 
 void Task::on_pbtnCreate_clicked()
@@ -218,6 +253,7 @@ void Task::slotRemoveProblem(int id)
 {
     removeProblem(id);
 }
+
 QString Task::getAbonentID() const
 {
     return abonentID;
@@ -227,7 +263,6 @@ void Task::setAbonentID(const QString &value)
 {
     abonentID = value;
 }
-
 
 ConnectToDataBase *Task::connToDB() const
 {
