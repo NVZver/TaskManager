@@ -22,6 +22,9 @@ public:
     QString getAbonentID() const;
     void setAbonentID(const QString &value);
 
+    int getLocalityID() const;
+    void setLocalityID(int value);
+
 signals:
     void CreationCompleted();
 
@@ -35,6 +38,7 @@ private slots:
     void slotRemoveProblem(int id);
 
 private:
+    int localityID;
     QString abonentID;
     QList<QString> mProblemsIDList;
     QList<QString> mProblemsNamesList;
