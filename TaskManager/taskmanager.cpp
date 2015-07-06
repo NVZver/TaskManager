@@ -199,7 +199,7 @@ void TaskManager::on_pbtnCreateTask_clicked()
 
 void TaskManager::on_tvTasks_doubleClicked(const QModelIndex &index)
 {
-    QString contractNimber = ui->tvTasks->model()->data(ui->tvTasks->model()->index(index.row(),9),Qt::DisplayRole).toString();
+    QString contractNimber = ui->tvTasks->model()->data(ui->tvTasks->model()->index(index.row(),7),Qt::DisplayRole).toString();
     Task* newTask = new Task(connToDB(),contractNimber, ui->dteSearch->date());
     connect(newTask, SIGNAL(CreationCompleted()), SLOT(slotCreationCompleted()));
     newTask->show();

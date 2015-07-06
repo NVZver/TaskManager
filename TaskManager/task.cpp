@@ -107,6 +107,8 @@ void Task::createProblem(QList<QString> problemsNames, QList<QString> resultsNam
     mProblemsList << nProblem;
     ui->vblProblems->addWidget(nProblem);
     nProblem->cbxResults->setCurrentIndex(nProblem->cbxResults->findText("Ожидание"));
+
+    this->calculateRunTime(this->mProblemsList);
 }
 
 /// Удаление проблемы
@@ -125,6 +127,7 @@ void Task::removeProblem(int id)
     delete mProblemsList[id];
     ui->vblProblems->removeWidget(mProblemsList[id]);
     mProblemsList.removeAt(id);
+    this->calculateRunTime(this->mProblemsList);
 }
 
 /// Создает новую задачу
@@ -167,7 +170,7 @@ void Task::updateTask(int index)
 
     for(int i = 0; i<mProblemsList.count();++i)
     {
-        if(mProblemsList[i]->getResultID() != "3")
+        if(mProblemsList[i]->getResultID() != "1")
         {
             strCompleted = "0";
             break;
@@ -181,7 +184,7 @@ void Task::updateTask(int index)
                       " SET result = "+mProblemsList[index]->getResultID()+
                       ", completed = "+strCompleted+
                       ", comment = '"+ui->txtComment->toPlainText()+"'"
-                      " WHERE idtask = "+mProblemsList[index]->getTaskID();
+                      " WHERE idTasks = "+mProblemsList[index]->getTaskID();
     mConnToDB->enterCommand(command);
 }
 
@@ -189,7 +192,6 @@ int Task::selectPerformer(QDateTime datetime)
 {
     QString command = "select "
                       "performer, "
-                      "date_completion "
                       "from tasks "
                       "where date_completion = (select min(date_completion) from tasks where date_completion like '"+datetime.date().toString("yyy-MM-dd")+"%')";
     mConnToDB->enterCommand(command);
@@ -221,19 +223,31 @@ QDateTime Task::selectDateCompletion(int localityID, QDateTime date_creation)
         dateCompletion.setDate(date.addDays(+1));
         date = dateCompletion.date();
     }
-    int totalRuntime = 0;
-    for(int i =0; i<this->mProblemsList.count(); i++)
+    dateCompletion.time().addSecs((int)totalRuntime);
+
+    qDebug()<<"DATE_COMPLETION = "<< dateCompletion.toString("yyyy-MM-dd");
+    return dateCompletion;
+}
+
+///
+/// \brief Task::calculateRunTime - Расчитывает количество МИНУТ, необходимых для выполнения всех задач
+/// \param problemsList - Список всех проблем на адресе
+/// \return - Возвращает коичество минут
+///
+int Task::calculateRunTime(QList<Problem *> problemsList)
+{
+    QString command;
+    int runtime = 0; // Количество МИНУТ!!!
+    for(int i =0; i<problemsList.count(); i++)
     {
         command.clear();
         command = "select runtime_minute from problems where idProblems = "+this->mProblemsList[i]->getResultID();
         mConnToDB->enterCommand(command);
-        totalRuntime += mConnToDB->getQueryModel()->data(mConnToDB->getQueryModel()->index(0,0),Qt::DisplayRole).toInt();
+        runtime += mConnToDB->getQueryModel()->data(mConnToDB->getQueryModel()->index(0,0),Qt::DisplayRole).toInt();
     }
-    totalRuntime *= 60;
-    dateCompletion.time().addSecs((int)totalRuntime);
-    qDebug()<<"TOTAL_RUNTIME = " << totalRuntime;
-    qDebug()<<"DATE_COMPLETION = "<< dateCompletion.toString("yyyy-MM-dd hh:mm:ss");
-    return dateCompletion;
+    qDebug()<<"RUNTIME = " << runtime;
+    this->setTotalRunTime(runtime);
+    return runtime;
 }
 
 void Task::on_pbtnCreate_clicked()
@@ -275,6 +289,16 @@ void Task::slotRemoveProblem(int id)
 {
     removeProblem(id);
 }
+int Task::getTotalRunTime() const
+{
+    return totalRunTime;
+}
+
+void Task::setTotalRunTime(int value)
+{
+    totalRunTime = value;
+}
+
 int Task::getLocalityID() const
 {
     return localityID;
