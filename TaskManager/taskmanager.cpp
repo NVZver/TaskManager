@@ -60,23 +60,20 @@ void TaskManager::updateMissingCalls()
 {
     QString strSearchDate;
     strSearchDate = "'"+ui->dteSearch->date().toString("yyyy-MM-dd")+"%'";
-    QString selectMissedCalls = "select "
-            "missed_calls.end_call as 'Время',"
-            "count(missed_calls.number) as 'Кол-во',"
-            "missed_calls.number as 'Номер телефона',"
-            "contracts.contract_number as 'Номер договора',"
-            "contracts.last_name as 'Фамилия', "
-            "contracts.first_name as 'Имя',"
-            "contracts.patronymic as 'Отчество',"
-            "addresses.locality as 'Нас.пункт',"
-            "addresses.street as 'Улица',"
-            "addresses.house as 'Дом',"
-            "addresses.apartment as 'Квартира' "
-            "from missed_calls "
-            "inner join contracts on contracts.phone_number = missed_calls.number "
-            "inner join addresses on addresses.idaddresses = contracts.idlocality "
-            "where date_call = " + strSearchDate +
-            " group by contract_number "
+    QString selectMissedCalls = "SELECT "
+            "calls.end_call, "
+            "count(calls.phone_number), "
+            "abonents.contract, "
+            "abonents.full_name, "
+            "localities.name, "
+            "abonents.address "
+            "FROM calls "
+            "inner join abonents on abonents.phone_number1 = calls.phone_number or "
+            "abonents.phone_number2 = calls.phone_number or "
+            "abonents.phone_number3 = calls.phone_number "
+            "inner join localities on localities.idLocalities = abonents.idLocalities "
+            "where calls.end_call = " + strSearchDate +
+            " group by abonents.contract "
             "order by end_call ";
 
     mConnToDB->enterCommand(selectMissedCalls);
@@ -91,7 +88,7 @@ void TaskManager::updateTasks()
     strSearchDate = "'"+ui->dteSearch->date().toString("yyyy-MM-dd")+"%'";
     QString selectTasks = "select "
                           "tasks.date_completion as 'Дата выполнения', "
-                          "count(problems.name) as 'Кол-во проблем',"
+                          "count(tasks.problem) as 'Кол-во проблем',"
                           "tasks.completed as 'Завершено', "
                           "localities.name as 'Нас.пункт', "
                           "abonents.address as 'Адрес', "
@@ -99,10 +96,12 @@ void TaskManager::updateTasks()
                           "performers.full_name as 'Исполнитель', "
                           "abonents.contract as '№ договора' "
                           "from tasks "
-                          "inner join localities on localities.idperformer = abonents.idLocalities "
-                          "inner join abonents on abonents.idproblem = tasks.problem"
-                          " where tasks.date_completion like"+strSearchDate+
-                          "group by tasks.locality, tasks.street,tasks.house,tasks.apartment "
+                          "inner join abonents on abonents.idAbonent = tasks.idAbonent "
+                          "inner join problems on problems.idProblems = tasks.problem "
+                          "inner join performers on performers.idPerformers = tasks.performer "
+                          "inner join localities on localities.idLocalities = abonents.idLocalities "
+                          "where tasks.date_completion like "+strSearchDate+
+                          "group by tasks.idAbonent "
                           "order by tasks.date_completion "
                           "and tasks.completed";
 
