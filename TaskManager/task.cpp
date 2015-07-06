@@ -108,6 +108,7 @@ void Task::createProblem(QList<QString> problemsNames, QList<QString> resultsNam
     ui->vblProblems->addWidget(nProblem);
     nProblem->cbxResults->setCurrentIndex(nProblem->cbxResults->findText("Ожидание"));
 
+    // ДАБАВИТЬ СИГНАЛ НА ИЗМЕНЕНИЕ ПОДЗАДАЧ НА АДРЕС ДЛЯ РАСЧЕТА RUNTIME
     this->calculateRunTime(this->mProblemsList);
 }
 
@@ -223,7 +224,7 @@ QDateTime Task::selectDateCompletion(int localityID, QDateTime date_creation)
         dateCompletion.setDate(date.addDays(+1));
         date = dateCompletion.date();
     }
-    dateCompletion.time().addSecs((int)totalRuntime);
+    //dateCompletion.time().addSecs((int)totalRuntime);
 
     qDebug()<<"DATE_COMPLETION = "<< dateCompletion.toString("yyyy-MM-dd");
     return dateCompletion;

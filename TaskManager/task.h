@@ -25,6 +25,9 @@ public:
     int getLocalityID() const;
     void setLocalityID(int value);
 
+    int getTotalRunTime() const;
+    void setTotalRunTime(int value);
+
 signals:
     void CreationCompleted();
 
@@ -46,6 +49,7 @@ private:
     QList<QString> mResultsNameslist;
     QList<Problem*> mProblemsList;
     ConnectToDataBase* mConnToDB;
+    int totalRunTime;
     Ui::Task *ui;
 
     void fillingDetails(QString contractNumber);
@@ -57,6 +61,7 @@ private:
     void updateTask(int index);
     int selectPerformer(QDateTime datetime);
     QDateTime selectDateCompletion(int localityID, QDateTime date_creation);
+    int calculateRunTime(QList<Problem*> problemsList);
 };
 
 #endif // TASK_H
